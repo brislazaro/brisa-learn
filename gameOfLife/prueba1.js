@@ -19,6 +19,7 @@ const cellAlive = 1;
 const cellDied = 0;
 
 function printTable(table) {
+  board.innerHTML = "";
   for (let i = 0; i < table.length; i++) {
     const currentRow = table[i];
     const row = document.createElement("div");
@@ -94,4 +95,8 @@ function calculateNextGeneration() {
   console.log(nextGeneration);
 }
 
-calculateNextGeneration();
+const button = document.querySelector(".button");
+button.addEventListener("click", () => {
+  calculateNextGeneration();
+  printTable(nextGeneration);
+});

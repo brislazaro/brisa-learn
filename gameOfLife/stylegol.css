@@ -22,3 +22,12 @@
 .celda--alive {
   background-color: palevioletred;
 }
+
+.button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: black;
+  color: white;
+  padding: 12px 12px;
+}
