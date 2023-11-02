@@ -1,4 +1,5 @@
 const board = document.querySelector(".container");
+let intervalID = null;
 
 let firstGame = [
   [0, 0, 0, 0, 0],
@@ -135,9 +136,15 @@ function buildEmptyBoard() {
 
 const button = document.querySelector(".button");
 button.addEventListener("click", () => {
-  calculateNextGeneration();
-  printTable(nextGeneration);
+  intervalID = setInterval(() => {
+    calculateNextGeneration();
+    printTable(nextGeneration);
 
-  firstGame = copyBoard(nextGeneration);
-  nextGeneration = buildEmptyBoard();
+    firstGame = copyBoard(nextGeneration);
+    nextGeneration = buildEmptyBoard();
+  }, 250);
 });
+
+function handleStop() {
+  clearInterval(intervalID);
+}
