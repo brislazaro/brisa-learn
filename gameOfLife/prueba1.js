@@ -39,7 +39,6 @@ function printTable(table) {
         }
 
         printTable(table);
-        calculateNextGeneration();
       });
 
       if (table[i][j] === cellAlive) {
@@ -99,12 +98,46 @@ function calculateNextGeneration() {
       applyRulesToCell(i, j);
     }
   }
+}
 
-  console.log(nextGeneration);
+function copyBoard(boardToCopy) {
+  const newBoard = [];
+
+  for (let i = 0; i < boardToCopy.length; i++) {
+    const currentRow = boardToCopy[i];
+
+    const newRow = [];
+    for (let j = 0; j < currentRow.length; j++) {
+      const currentCell = currentRow[j];
+      newRow.push(currentCell);
+    }
+
+    newBoard.push(newRow);
+  }
+
+  return newBoard;
+}
+
+function buildEmptyBoard() {
+  const emptyBoard = [];
+
+  for (let i = 0; i < firstGame.length; i++) {
+    const emptyRow = [];
+
+    for (let j = 0; j < firstGame[i].length; j++) {
+      emptyRow.push(0);
+    }
+    emptyBoard.push(emptyRow);
+  }
+
+  return emptyBoard;
 }
 
 const button = document.querySelector(".button");
 button.addEventListener("click", () => {
   calculateNextGeneration();
   printTable(nextGeneration);
+
+  firstGame = copyBoard(nextGeneration);
+  nextGeneration = buildEmptyBoard();
 });
