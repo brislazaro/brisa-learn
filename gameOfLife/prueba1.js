@@ -3,7 +3,7 @@ const board = document.querySelector(".container");
 let firstGame = [
   [0, 0, 0, 0, 0],
   [0, 0, 0, 0, 0],
-  [0, 1, 1, 1, 0],
+  [0, 0, 0, 0, 0],
   [0, 0, 0, 0, 0],
   [0, 0, 0, 0, 0],
 ];
@@ -31,12 +31,20 @@ function printTable(table) {
       const cell = document.createElement("div");
       cell.classList.add("celda");
 
+      cell.addEventListener("click", () => {
+        if (table[i][j] === cellAlive) {
+          table[i][j] = cellDied;
+        } else {
+          table[i][j] = cellAlive;
+        }
+
+        printTable(table);
+        calculateNextGeneration();
+      });
+
       if (table[i][j] === cellAlive) {
         cell.classList.add("celda--alive");
       }
-
-      // cell.addEventListener("click", () => {
-      // });
 
       row.appendChild(cell);
     }
