@@ -39,7 +39,6 @@ function printTable(table) {
         }
 
         printTable(firstGame);
-        console.log(firstGame);
       });
 
       if (table[i][j] === cellAlive) {
@@ -137,7 +136,6 @@ function buildEmptyBoard(size) {
 const button = document.querySelector(".button");
 button.addEventListener("click", () => {
   intervalID = setInterval(() => {
-    console.log(firstGame);
     calculateNextGeneration();
     printTable(nextGeneration);
 
