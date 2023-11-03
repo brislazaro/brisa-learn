@@ -1,22 +1,20 @@
-const board = document.querySelector(".container");
-
-let firstGame = [
-  [0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0],
-];
-
-let nextGeneration = [
-  [0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0],
-];
 const cellAlive = 1;
 const cellDied = 0;
+
+let rangeInput = document.getElementById("range");
+
+const board = document.querySelector(".container");
+let intervalID = null;
+
+let boardSize = 10;
+
+let cellSize = 400 / boardSize;
+
+let firstGame = buildEmptyBoard(boardSize);
+
+let nextGeneration = buildEmptyBoard(boardSize);
+
+printTable(firstGame);
 
 function printTable(table) {
   board.innerHTML = "";
@@ -30,16 +28,17 @@ function printTable(table) {
     for (let j = 0; j < currentRow.length; j++) {
       const cell = document.createElement("div");
       cell.classList.add("celda");
+      cell.style.width = cellSize + "px";
+      cell.style.height = cellSize + "px";
 
       cell.addEventListener("click", () => {
-        if (table[i][j] === cellAlive) {
-          table[i][j] = cellDied;
+        if (firstGame[i][j] === cellAlive) {
+          firstGame[i][j] = cellDied;
         } else {
-          table[i][j] = cellAlive;
+          firstGame[i][j] = cellAlive;
         }
 
-        printTable(table);
-        calculateNextGeneration();
+        printTable(firstGame);
       });
 
       if (table[i][j] === cellAlive) {
@@ -99,12 +98,66 @@ function calculateNextGeneration() {
       applyRulesToCell(i, j);
     }
   }
+}
 
-  console.log(nextGeneration);
+function copyBoard(boardToCopy) {
+  const newBoard = [];
+
+  for (let i = 0; i < boardToCopy.length; i++) {
+    const currentRow = boardToCopy[i];
+
+    const newRow = [];
+    for (let j = 0; j < currentRow.length; j++) {
+      const currentCell = currentRow[j];
+      newRow.push(currentCell);
+    }
+
+    newBoard.push(newRow);
+  }
+
+  return newBoard;
+}
+
+function buildEmptyBoard(size) {
+  const emptyBoard = [];
+
+  for (let i = 0; i < size; i++) {
+    const emptyRow = [];
+
+    for (let j = 0; j < size; j++) {
+      emptyRow.push(0);
+    }
+    emptyBoard.push(emptyRow);
+  }
+
+  return emptyBoard;
 }
 
 const button = document.querySelector(".button");
 button.addEventListener("click", () => {
-  calculateNextGeneration();
-  printTable(nextGeneration);
+  intervalID = setInterval(() => {
+    calculateNextGeneration();
+    printTable(nextGeneration);
+
+    firstGame = copyBoard(nextGeneration);
+    nextGeneration = buildEmptyBoard(boardSize);
+  }, 250);
+});
+
+function handleStop() {
+  clearInterval(intervalID);
+}
+
+rangeInput.addEventListener("change", function () {
+  boardSize = rangeInput.value;
+
+  document.getElementById("rangeNumber").innerHTML = boardSize;
+
+  cellSize = 400 / boardSize;
+
+  firstGame = buildEmptyBoard(boardSize);
+
+  nextGeneration = buildEmptyBoard(boardSize);
+
+  printTable(firstGame);
 });
