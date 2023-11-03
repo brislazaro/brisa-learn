@@ -1,23 +1,20 @@
+const cellAlive = 1;
+const cellDied = 0;
+
+let rangeInput = document.getElementById("range");
+
 const board = document.querySelector(".container");
 let intervalID = null;
 
-let firstGame = [
-  [0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0],
-];
+let boardSize = 10;
 
-let nextGeneration = [
-  [0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0],
-];
-const cellAlive = 1;
-const cellDied = 0;
+let cellSize = 400 / boardSize;
+
+let firstGame = buildEmptyBoard(boardSize);
+
+let nextGeneration = buildEmptyBoard(boardSize);
+
+printTable(firstGame);
 
 function printTable(table) {
   board.innerHTML = "";
@@ -31,15 +28,18 @@ function printTable(table) {
     for (let j = 0; j < currentRow.length; j++) {
       const cell = document.createElement("div");
       cell.classList.add("celda");
+      cell.style.width = cellSize + "px";
+      cell.style.height = cellSize + "px";
 
       cell.addEventListener("click", () => {
-        if (table[i][j] === cellAlive) {
-          table[i][j] = cellDied;
+        if (firstGame[i][j] === cellAlive) {
+          firstGame[i][j] = cellDied;
         } else {
-          table[i][j] = cellAlive;
+          firstGame[i][j] = cellAlive;
         }
 
-        printTable(table);
+        printTable(firstGame);
+        console.log(firstGame);
       });
 
       if (table[i][j] === cellAlive) {
@@ -119,13 +119,13 @@ function copyBoard(boardToCopy) {
   return newBoard;
 }
 
-function buildEmptyBoard() {
+function buildEmptyBoard(size) {
   const emptyBoard = [];
 
-  for (let i = 0; i < firstGame.length; i++) {
+  for (let i = 0; i < size; i++) {
     const emptyRow = [];
 
-    for (let j = 0; j < firstGame[i].length; j++) {
+    for (let j = 0; j < size; j++) {
       emptyRow.push(0);
     }
     emptyBoard.push(emptyRow);
@@ -137,14 +137,29 @@ function buildEmptyBoard() {
 const button = document.querySelector(".button");
 button.addEventListener("click", () => {
   intervalID = setInterval(() => {
+    console.log(firstGame);
     calculateNextGeneration();
     printTable(nextGeneration);
 
     firstGame = copyBoard(nextGeneration);
-    nextGeneration = buildEmptyBoard();
+    nextGeneration = buildEmptyBoard(boardSize);
   }, 250);
 });
 
 function handleStop() {
   clearInterval(intervalID);
 }
+
+rangeInput.addEventListener("change", function () {
+  boardSize = rangeInput.value;
+
+  document.getElementById("rangeNumber").innerHTML = boardSize;
+
+  cellSize = 400 / boardSize;
+
+  firstGame = buildEmptyBoard(boardSize);
+
+  nextGeneration = buildEmptyBoard(boardSize);
+
+  printTable(firstGame);
+});
