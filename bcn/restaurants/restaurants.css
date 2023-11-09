@@ -1,0 +1,16 @@
+.title {
+  color: red;
+  text-transform: capitalize;
+}
+
+.star {
+  font-size: 32px;
+  color: #bbb;
+  transition: color 0.3s;
+  cursor: pointer;
+}
+
+.star:hover,
+.star.checked {
+  color: gold;
+}
