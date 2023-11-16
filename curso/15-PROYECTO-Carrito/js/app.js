@@ -9,6 +9,8 @@ function cargarEventListener() {
   listaCursos.addEventListener("click", agregarCurso);
 
   carrito.addEventListener("click", eliminarCurso);
+
+  vaciarCarritoBtn.addEventListener("click", vaciarCarrito);
 }
 
 function agregarCurso(e) {
@@ -29,6 +31,11 @@ function eliminarCurso(e) {
 
     carritoHTML();
   }
+}
+
+function vaciarCarrito(e) {
+  articulosCarrito = [];
+  carritoHTML();
 }
 
 function leerDatosCursos(curso) {
