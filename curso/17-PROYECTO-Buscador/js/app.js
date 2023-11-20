@@ -20,7 +20,7 @@ const datosBusqueda = {
 };
 
 document.addEventListener("DOMContentLoaded", () => {
-  mostrarAutos();
+  mostrarAutos(autos);
   llenarSelect();
 });
 
@@ -31,6 +31,7 @@ marca.addEventListener("change", (e) => {
 
 year.addEventListener("change", (e) => {
   datosBusqueda.year = e.target.value;
+  filtrarAuto();
 });
 
 minimo.addEventListener("change", (e) => {
@@ -53,7 +54,8 @@ color.addEventListener("change", (e) => {
   datosBusqueda.color = e.target.value;
 });
 
-function mostrarAutos() {
+function mostrarAutos(autos) {
+  limpiarHTML();
   autos.forEach((auto) => {
     const autoHTML = document.createElement("p");
     autoHTML.textContent = `
@@ -61,6 +63,12 @@ function mostrarAutos() {
     `;
     resultado.appendChild(autoHTML);
   });
+}
+
+function limpiarHTML() {
+  while (resultado.firstChild) {
+    resultado.removeChild(resultado.firstChild);
+  }
 }
 
 function llenarSelect() {
@@ -74,12 +82,21 @@ function llenarSelect() {
 }
 
 function filtrarAuto() {
-  const resultado = autos.filter(filtrarMarca);
+  const resultado = autos.filter(filtrarMarca).filter(filtrarYear);
+  console.log(resultado);
+  mostrarAutos(resultado);
 }
 
 function filtrarMarca(auto) {
   if (datosBusqueda.marca) {
     return auto.marca === datosBusqueda.marca;
+  }
+  return auto;
+}
+
+function filtrarYear(auto) {
+  if (datosBusqueda.year) {
+    return auto.year === parseInt(datosBusqueda.year);
   }
   return auto;
 }
