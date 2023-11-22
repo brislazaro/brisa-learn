@@ -5,6 +5,12 @@ let tweets = [];
 eventListener();
 function eventListener() {
   formulario.addEventListener("submit", agregarTweet);
+
+  document.addEventListener("DOMContentLoaded", () => {
+    tweets = JSON.parse(localStorage.getItem("tweets")) || [];
+
+    creatHTML();
+  });
 }
 
 function agregarTweet(e) {
@@ -52,6 +58,12 @@ function creatHTML() {
       listaTweets.appendChild(li);
     });
   }
+
+  sinconizarStorage();
+}
+
+function sinconizarStorage() {
+  localStorage.setItem("tweets", JSON.stringify(tweets));
 }
 
 function limpiarHTML() {
