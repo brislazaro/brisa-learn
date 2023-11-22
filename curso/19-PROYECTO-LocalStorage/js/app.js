@@ -16,6 +16,17 @@ function agregarTweet(e) {
     mostrarError("mensaje vacio");
     return;
   }
+
+  const tweetObj = {
+    id: Date.now(),
+    tweet,
+  };
+
+  tweets = [...tweets, tweetObj];
+
+  creatHTML();
+
+  formulario.reset();
 }
 
 function mostrarError(error) {
@@ -29,4 +40,22 @@ function mostrarError(error) {
   setTimeout(() => {
     mensajeError.remove();
   }, 3000);
+}
+
+function creatHTML() {
+  limpiarHTML();
+  if (tweets.length > 0) {
+    tweets.forEach((tweet) => {
+      const li = document.createElement("li");
+      li.innerText = tweet.tweet;
+
+      listaTweets.appendChild(li);
+    });
+  }
+}
+
+function limpiarHTML() {
+  while (listaTweets.firstChild) {
+    listaTweets.removeChild(listaTweets.firstChild);
+  }
 }
