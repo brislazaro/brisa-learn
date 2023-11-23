@@ -4,6 +4,35 @@ function Seguro(marca, year, tipo) {
   this.tipo = tipo;
 }
 
+Seguro.prototype.cotizarSeguro = function () {
+  let cantidad;
+  const base = 2000;
+  switch (this.marca) {
+    case "1":
+      cantidad = base * 1.15;
+      break;
+    case "2":
+      cantidad = base * 1.05;
+      break;
+    case "3":
+      cantidad = base * 1.35;
+      break;
+    default:
+      break;
+  }
+
+  const diferencia = new Date().getFullYear() - this.year;
+  cantidad -= (diferencia * 3 * cantidad) / 100;
+
+  if (this.tipo === "basico") {
+    cantidad *= 1.3;
+  } else {
+    cantidad *= 1.5;
+  }
+
+  return cantidad;
+};
+
 function UI() {}
 
 UI.prototype.llenarOpciones = () => {
@@ -18,6 +47,26 @@ UI.prototype.llenarOpciones = () => {
     option.textContent = i;
     selectYear.appendChild(option);
   }
+};
+
+UI.prototype.mostrarMensaje = (mensaje, tipo) => {
+  const div = document.createElement("div");
+
+  if (tipo === "error") {
+    div.classList.add("mensaje", "error");
+  } else {
+    div.classList.add("mensaje", "correcto");
+  }
+
+  div.classList.add("mensaje", "mt-10");
+  div.textContent = mensaje;
+
+  const formulario = document.querySelector("#cotizar-seguro");
+  formulario.insertBefore(div, document.querySelector("#resultado"));
+
+  setTimeout(() => {
+    div.remove;
+  }, 3000);
 };
 
 const ui = new UI();
@@ -37,13 +86,17 @@ function cotizarSeguro(e) {
 
   const marca = document.querySelector("#marca").value;
 
-  const year = document.querySelector("#yaer").value;
+  const year = document.querySelector("#year").value;
 
   const tipo = document.querySelector('input[name="tipo"]:checked').value;
 
   if (marca === "" || year === "" || tipo === "") {
-    console.log("no");
-  } else {
-    console.log("si");
+    ui.mostrarMensaje("Todos los campos son obligatorios", "error");
+    return;
   }
+
+  ui.mostrarMensaje("Cotizando...", "exito");
+
+  const seguro = new Seguro(marca, year, tipo);
+  seguro.cotizarSeguro();
 }
