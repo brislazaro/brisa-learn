@@ -6,6 +6,19 @@ function eventListeners() {
   document.addEventListener("DOMContentLoaded", preguntaPresupuesto);
 }
 
+class Presupuesto {
+  constructor(presupuesto) {
+    this.presupuesto = Number(presupuesto);
+    this.restante = Number(presupuesto);
+    this.gastos = [];
+  }
+}
+
+class UI {}
+
+const ui = new UI();
+let presupuesto;
+
 function preguntaPresupuesto() {
   const presupuestoUsuario = prompt("Cual es tu presupuesto?");
 
@@ -17,4 +30,7 @@ function preguntaPresupuesto() {
   ) {
     window.location.reload();
   }
+
+  presupuesto = new Presupuesto(presupuestoUsuario);
+  console.log(presupuesto);
 }
