@@ -13,9 +13,19 @@ class Cliente {
   }
 }
 
-const brisa = new Cliente("brisa", 400);
-console.log(brisa.mostrarInformacion);
-console.log("brisa");
-console.log(Cliente.bienvenida);
+class Empresa extends Cliente {
+  constructor(nombre, saldo, telefono, categoria) {
+    super(nombre, saldo);
+    this.telefono = telefono;
+    this.categoria = categoria;
+  }
+}
 
-const Cliente2 = class {};
+const brisa = new Cliente("brisa", 400);
+const empresa = new Empresa(
+  "codigo con juan",
+  500,
+  567898,
+  "aprendizaje en linea"
+);
+console.log(empresa.mostrarInformacion());
