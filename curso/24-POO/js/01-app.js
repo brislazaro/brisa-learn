@@ -19,6 +19,10 @@ class Empresa extends Cliente {
     this.telefono = telefono;
     this.categoria = categoria;
   }
+
+  static bienvenida() {
+    return `Bienvenido al cajero de Empresas`;
+  }
 }
 
 const brisa = new Cliente("brisa", 400);
