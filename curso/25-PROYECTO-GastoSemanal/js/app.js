@@ -16,6 +16,15 @@ class Presupuesto {
 
   nuevoGasto(gasto) {
     this.gastos = [...this.gastos, gasto];
+    this.calcularRestante();
+  }
+
+  calcularRestante() {
+    const gastado = this.gastos.reduce(
+      (total, gasto) => total + gasto.cantidad,
+      0
+    );
+    this.restante = this.presupuesto - gastado;
   }
 }
 
@@ -56,7 +65,7 @@ class UI {
         "list-group-item d-flex justify-content-between align-items-center";
 
       nuevoGasto.dataset.id = id;
-      nuevoGasto.innerHTML = `${nombre} <span class="badge badge-primary badge-pill">${cantidad}</span>`;
+      nuevoGasto.innerHTML = `${nombre} <span class="badge badge-primary badge-pill">$ ${cantidad}</span>`;
 
       const btnBorrar = document.createElement("button");
       btnBorrar.classList.add("btn", "btn-danger", "borrar-gasto");
@@ -72,6 +81,10 @@ class UI {
     while (gastoListado.firstChild) {
       gastoListado.removeChild(gastoListado.firstChild);
     }
+  }
+
+  actualizarRestante(restante) {
+    document.querySelector("#restante").textContent = restante;
   }
 }
 
@@ -116,8 +129,9 @@ function agregarGasto(e) {
   presupuesto.nuevoGasto(gasto);
   ui.imprimirAlerta("Gasto agregado");
 
-  const { gastos } = presupuesto;
+  const { gastos, restante } = presupuesto;
   ui.agregarGastoListado(gastos);
+  ui.actualizarRestante(restante);
 
   formulario.reset();
 }
