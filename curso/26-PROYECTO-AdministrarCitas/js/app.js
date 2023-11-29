@@ -11,6 +11,10 @@ class Citas {
   constructor() {
     this.citas = [];
   }
+
+  agregarCita(cita) {
+    this.citas = [...this.citas, cita];
+  }
 }
 
 class UI {
@@ -78,4 +82,10 @@ function nuevaCita(e) {
     ui.imprimirAlerta("Todos los campos son obligatorios", "error");
     return;
   }
+
+  citaObj.id = Date.now();
+
+  administrarCitas.agregarCita({ ...citaObj });
+
+  formulario.reset();
 }
