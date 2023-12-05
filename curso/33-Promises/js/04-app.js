@@ -1,12 +1,13 @@
 const paises = [];
 
-const nuevoPais = (pais) =>
+const nuevoPais = (pais) => {
   new Promise((resolve) => {
     setTimeout(() => {
       paises.push(pais);
       resolve(`Agregado ${pais}`);
     }, 3000);
   });
+};
 
 nuevoPais("Alemania").then((resultado) => {
   console.log(resultado);
