@@ -7,6 +7,8 @@ const aplicarDescuento = new Promise((resolve, reject) => {
   }
 });
 
+console.log(aplicarDescuento);
+
 aplicarDescuento
   .then((resultado) => {
     console.log(resultado);
@@ -14,3 +16,6 @@ aplicarDescuento
   .catch((error) => {
     console.log(error);
   });
+
+console.log(1);
+console.log(2);
