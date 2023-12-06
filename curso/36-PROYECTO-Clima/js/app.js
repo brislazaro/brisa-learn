@@ -10,14 +10,13 @@ function buscarClima(e) {
   e.preventDefault();
 
   const ciudad = document.querySelector("#ciudad").value;
-  const pais = document.querySelector("#pais").value;
 
-  if (ciudad === "" || pais === "") {
-    mostrarError("Ambos campos son obligatorios");
+  if (ciudad === "") {
+    mostrarError("Introduce una ciudad");
     return;
   }
 
-  consultarAPI(ciudad, pais);
+  consultarAPI(ciudad);
 }
 
 function mostrarError(mensaje) {
@@ -49,7 +48,7 @@ function mostrarError(mensaje) {
   }
 }
 
-function consultarAPI(ciudad, pais) {
+function consultarAPI(ciudad) {
   const appID = "44d02e217fe7740b39f03cfeff7a37fb";
 
   const coordinatesUrl = `http://api.openweathermap.org/geo/1.0/direct?q=${ciudad}&appid=${appID}`;
