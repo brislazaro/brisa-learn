@@ -12,7 +12,7 @@ function buscarClima(e) {
   const ciudad = document.querySelector("#ciudad").value;
 
   if (ciudad === "") {
-    mostrarError("La ciudad es obligatorio");
+    mostrarError("Introduce una ciudad");
     return;
   }
 
