@@ -4,6 +4,8 @@ const title = document.querySelector(".modal-title-principal");
 const body = document.querySelector(".text");
 const spinner = document.querySelector(".spinner-border");
 const modalContent = document.querySelector(".modal-body-content");
+const listIngredientes = document.querySelector(".ingredientes-list");
+const listContainer = document.querySelector(".ingredientes-list");
 
 function printCategorias(datos) {
   for (let i = 0; i < datos.length; i++) {
@@ -77,14 +79,14 @@ function printProducts(products) {
     button.setAttribute("data-bs-target", "#myModal");
 
     button.addEventListener("click", function (e) {
-      visible();
+      mostrarSpinner();
       let id = element.idMeal;
       ingredientesURL = `https://themealdb.com/api/json/v1/1/lookup.php?i=${id}`;
       fetch(ingredientesURL)
         .then((info) => info.json())
         .then((info) => {
           PrintReceta(info.meals[0]);
-          oculto();
+          ocultarSpinner();
         });
     });
 
@@ -100,18 +102,46 @@ function limpiarHTML() {
 
 function PrintReceta(platillo) {
   title.innerHTML = platillo.strMeal;
+
   body.textContent = platillo.strInstructions;
+
+  limpiarLista();
+  for (let i = 1; i < 20; i++) {
+    const currentProperty = `strIngredient${i}`;
+    const currentQuantity = `strMeasure${i}`;
+
+    const ingredienteValue = platillo[currentProperty];
+    const quantityValue = platillo[currentQuantity];
+
+    const ingredienteEl = document.createElement("li");
+    ingredienteEl.classList.add("list");
+    ingredienteEl.innerHTML = `${ingredienteValue}-${quantityValue}`;
+    listIngredientes.appendChild(ingredienteEl);
+
+    if (!ingredienteValue) {
+      ingredienteEl.remove();
+    }
+  }
 }
 
-function visible() {
+function mostrarSpinner() {
   spinner.classList.remove("oculto");
   spinner.classList.add("visible");
+
+  modalContent.classList.remove("visible");
+  modalContent.classList.add("oculto");
+}
+
+function ocultarSpinner() {
+  spinner.classList.remove("visible");
+  spinner.classList.add("oculto");
 
   modalContent.classList.remove("oculto");
   modalContent.classList.add("visible");
 }
 
-function oculto() {
-  spinner.classList.remove("visible");
-  spinner.classList.add("oculto");
+function limpiarLista() {
+  while (listContainer.firstChild) {
+    listContainer.removeChild(listContainer.firstChild);
+  }
 }
