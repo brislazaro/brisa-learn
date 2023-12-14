@@ -1,5 +1,9 @@
 const selectEl = document.querySelector(".form-select");
 const result = document.querySelector("#resultado");
+const title = document.querySelector(".modal-title-principal");
+const body = document.querySelector(".text");
+const spinner = document.querySelector(".spinner-border");
+const modalContent = document.querySelector(".modal-body-content");
 
 function printCategorias(datos) {
   for (let i = 0; i < datos.length; i++) {
@@ -13,6 +17,7 @@ function printCategorias(datos) {
 }
 
 const apiURL = `https://www.themealdb.com/api/json/v1/1/categories.php`;
+let ingredientesURL = `https://themealdb.com/api/json/v1/1/lookup.php?i=52772`;
 
 fetch(apiURL)
   .then((datos) => datos.json())
@@ -40,7 +45,8 @@ selectEl.addEventListener("change", function (e) {
 });
 
 function printProducts(products) {
-  // limpiar el html primero
+  limpiarHTML();
+
   for (let i = 0; i < products.length; i++) {
     const element = products[i];
 
@@ -52,9 +58,60 @@ function printProducts(products) {
     cartMeal.classList.add("card", "mb-4");
     cartContainer.appendChild(cartMeal);
 
-    const meal = document.createElement("p");
+    const img = document.createElement("img");
+    img.src = element.strMealThumb;
+    img.classList.add("img");
+    cartMeal.appendChild(img);
 
+    const meal = document.createElement("p");
+    meal.classList.add("name");
     meal.textContent = element.strMeal;
+
     cartMeal.appendChild(meal);
+
+    const button = document.createElement("button");
+    button.classList.add("my-button");
+    button.innerHTML = "Ver receta";
+
+    button.setAttribute("data-bs-toggle", "modal");
+    button.setAttribute("data-bs-target", "#myModal");
+
+    button.addEventListener("click", function (e) {
+      visible();
+      let id = element.idMeal;
+      ingredientesURL = `https://themealdb.com/api/json/v1/1/lookup.php?i=${id}`;
+      fetch(ingredientesURL)
+        .then((info) => info.json())
+        .then((info) => {
+          PrintReceta(info.meals[0]);
+          oculto();
+        });
+    });
+
+    cartMeal.appendChild(button);
   }
+}
+
+function limpiarHTML() {
+  while (result.firstChild) {
+    result.removeChild(result.firstChild);
+  }
+}
+
+function PrintReceta(platillo) {
+  title.innerHTML = platillo.strMeal;
+  body.textContent = platillo.strInstructions;
+}
+
+function visible() {
+  spinner.classList.remove("oculto");
+  spinner.classList.add("visible");
+
+  modalContent.classList.remove("oculto");
+  modalContent.classList.add("visible");
+}
+
+function oculto() {
+  spinner.classList.remove("visible");
+  spinner.classList.add("oculto");
 }
