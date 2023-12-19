@@ -6,6 +6,7 @@ const spinner = document.querySelector(".spinner-border");
 const modalContent = document.querySelector(".modal-body-content");
 const listIngredientes = document.querySelector(".ingredientes-list");
 const listContainer = document.querySelector(".ingredientes-list");
+const favorito = document.querySelector(".btn-primary");
 
 function printCategorias(datos) {
   for (let i = 0; i < datos.length; i++) {
@@ -85,8 +86,12 @@ function printProducts(products) {
       fetch(ingredientesURL)
         .then((info) => info.json())
         .then((info) => {
-          PrintReceta(info.meals[0]);
+          printReceta(info.meals[0]);
           ocultarSpinner();
+
+          favorito.addEventListener("click", (event) => {
+            handleFavoriteClick(info.meals[0]);
+          });
         });
     });
 
@@ -94,13 +99,36 @@ function printProducts(products) {
   }
 }
 
+function handleFavoriteClick(receta) {
+  // 1- Obener array anterior del LS
+  let obtenerLS = JSON.parse(localStorage.getItem("favoritos"));
+
+  if (obtenerLS === null) {
+    obtenerLS = [];
+  }
+
+  // 2- Añadir a este array, la nueva receta
+
+  obtenerLS.push(receta);
+  console.log(obtenerLS);
+
+  // 3- Guardar el array en el LS
+  const favoritos = JSON.stringify(obtenerLS);
+
+  localStorage.setItem("favoritos", favoritos);
+}
+
+document.querySelector("#myModal").addEventListener("hidden.bs.modal", () => {
+  favorito.removeEventListener("click", handleFavoriteClick);
+});
+
 function limpiarHTML() {
   while (result.firstChild) {
     result.removeChild(result.firstChild);
   }
 }
 
-function PrintReceta(platillo) {
+function printReceta(platillo) {
   title.innerHTML = platillo.strMeal;
 
   body.textContent = platillo.strInstructions;
