@@ -2,6 +2,7 @@ const select = document.querySelector("#criptomonedas");
 const moneda = document.querySelector("#moneda");
 const cotizarBtn = document.querySelector("#cotizarBtn");
 const resultado = document.querySelector("#resultado");
+const spinner = document.querySelector(".half-circle-spinner");
 
 const criptomonedasURL =
   "https://min-api.cryptocompare.com/data/top/mktcapfull?limit=10&tsym=USD";
@@ -28,13 +29,20 @@ cotizarBtn.addEventListener("click", function (e) {
   let criptoValue = select.value;
   let monedaValue = moneda.value;
 
+  // Añadir validacion
+
+  showSpinner();
+
   const apiURL = `https://min-api.cryptocompare.com/data/pricemultifull?fsyms=${criptoValue}&tsyms=${monedaValue}`;
 
   fetch(apiURL)
     .then((data) => data.json())
     .then((data) => {
-      printTotal(data.DISPLAY[criptoValue][monedaValue]);
-      console.log(data);
+      setTimeout(() => {
+        hideSpinner();
+        printTotal(data.DISPLAY[criptoValue][monedaValue]);
+        console.log(data);
+      }, 1000);
     });
 
   function printTotal(data) {
@@ -64,3 +72,22 @@ cotizarBtn.addEventListener("click", function (e) {
     divTotal.appendChild(actualizacion);
   }
 });
+
+// function spinnerResult() {
+//   const spinner = document.createElement("div");
+//   spinner.classList.add("half-circle-spinner");
+
+//   resultado.appendChild(spinner);
+
+//   const spinnerdiv = document.createElement("div");
+//   spinnerdiv.classList.add("circle circle-1");
+//   spinner.appendChild(spinnerdiv);
+// }
+
+function showSpinner() {
+  spinner.classList.remove("oculto");
+}
+
+function hideSpinner() {
+  spinner.classList.add("oculto");
+}
