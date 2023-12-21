@@ -29,7 +29,10 @@ cotizarBtn.addEventListener("click", function (e) {
   let criptoValue = select.value;
   let monedaValue = moneda.value;
 
-  // Añadir validacion
+  if (criptoValue === "" && monedaValue === "") {
+    alert("Añade la informacion");
+    return;
+  }
 
   showSpinner();
 
