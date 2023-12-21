@@ -1,8 +1,8 @@
 const select = document.querySelector("#criptomonedas");
 const moneda = document.querySelector("#moneda");
+const cotizarBtn = document.querySelector("#cotizarBtn");
+const resultado = document.querySelector("#resultado");
 
-const URL =
-  "https://min-api.cryptocompare.com/data/price?fsym=BTC&tsyms=USD,JPY,EUR";
 const criptomonedasURL =
   "https://min-api.cryptocompare.com/data/top/mktcapfull?limit=10&tsym=USD";
 
@@ -10,7 +10,6 @@ fetch(criptomonedasURL)
   .then((datos) => datos.json())
   .then((datos) => {
     printCriptomonedas(datos.Data);
-    console.log(datos);
   });
 
 function printCriptomonedas(criptomonedas) {
@@ -24,7 +23,44 @@ function printCriptomonedas(criptomonedas) {
   }
 }
 
-select.addEventListener("change", function (e) {
-  let selectValue = select.value;
-  console.log(selectValue);
+cotizarBtn.addEventListener("click", function (e) {
+  e.preventDefault();
+  let criptoValue = select.value;
+  let monedaValue = moneda.value;
+
+  const apiURL = `https://min-api.cryptocompare.com/data/pricemultifull?fsyms=${criptoValue}&tsyms=${monedaValue}`;
+
+  fetch(apiURL)
+    .then((data) => data.json())
+    .then((data) => {
+      printTotal(data.DISPLAY[criptoValue][monedaValue]);
+      console.log(data);
+    });
+
+  function printTotal(data) {
+    resultado.innerHTML = "";
+
+    const divTotal = document.createElement("div");
+    resultado.appendChild(divTotal);
+
+    const total = document.createElement("p");
+    total.innerHTML = `El precio es de: ${data.PRICE}`;
+    divTotal.appendChild(total);
+
+    const highPrice = document.createElement("p");
+    highPrice.innerHTML = `Precio mas alto del dia: ${data.HIGHDAY}`;
+    divTotal.appendChild(highPrice);
+
+    const lowPrice = document.createElement("p");
+    lowPrice.innerHTML = `Precio mas bajo del dia: ${data.LOWDAY}`;
+    divTotal.appendChild(lowPrice);
+
+    const variacion = document.createElement("p");
+    variacion.innerHTML = `Variacion ultimas 24 HRS: ${data.CHANGEPCTDAY}%`;
+    divTotal.appendChild(variacion);
+
+    const actualizacion = document.createElement("p");
+    actualizacion.innerHTML = `Ultima actualizacion: ${data.LASTUPDATE}`;
+    divTotal.appendChild(actualizacion);
+  }
 });
