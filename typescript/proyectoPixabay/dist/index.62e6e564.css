@@ -1,3 +1,7 @@
+* {
+  box-sizing: border-box;
+}
+
 body {
   background: #2c3e50;
   background: -webkit-linear-gradient(to right, #4ca1af, #2c3e50);
@@ -34,6 +38,81 @@ body {
 .color {
   color: #fff;
   font-weight: 800;
+}
+
+.resultado {
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding: 12px;
+  display: flex;
+}
+
+.resultCard {
+  background-color: #adbac0b3;
+  border-radius: 12px;
+  width: 54%;
+  margin: 20px;
+  padding: 8px;
+  font-weight: 700;
+}
+
+.cardImg {
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  display: flex;
+}
+
+.cardName {
+  color: #000;
+  text-transform: uppercase;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  font-size: 42px;
+  font-weight: 700;
+  text-decoration: underline;
+  display: flex;
+}
+
+.errorCard {
+  background-color: red;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin: 20px 0;
+  padding: 8px;
+  display: flex;
+}
+
+.errorText {
+  color: #fff;
+  font-weight: 700;
+}
+
+.spinner {
+  border: 4px solid #0000001a;
+  border-left-color: #09f;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  animation: 1s infinite spin;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.hidden {
+  display: none;
 }
 
 /*# sourceMappingURL=index.62e6e564.css.map */

@@ -1,3 +1,7 @@
+* {
+  box-sizing: border-box;
+}
+
 body {
   background: #2c3e50; /* fallback for old browsers */
   background: -webkit-linear-gradient(
@@ -41,4 +45,81 @@ body {
 .color {
   color: white;
   font-weight: 800;
+}
+
+.resultado {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 12px;
+}
+
+.resultCard {
+  width: 54%;
+
+  margin: 20px;
+  padding: 8px;
+  font-weight: 700;
+  background-color: #adbac0b3;
+  border-radius: 12px;
+}
+
+.cardImg {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.cardName {
+  width: 100%;
+  color: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 700;
+  font-size: 42px;
+  text-transform: uppercase;
+  text-decoration: underline;
+}
+
+.errorCard {
+  width: 100%;
+  background-color: red;
+  margin: 20px 0;
+  padding: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.errorText {
+  color: white;
+  font-weight: 700;
+}
+
+.spinner {
+  border: 4px solid rgba(0, 0, 0, 0.1);
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border-left-color: #09f;
+
+  animation: spin 1s ease infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.hidden {
+  display: none;
 }
