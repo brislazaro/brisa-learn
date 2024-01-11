@@ -1,0 +1,20 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.header {
+  background-color: #de5457;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 80px;
+  display: flex;
+}
+
+.logo {
+  height: 102px;
+}
+
+/*# sourceMappingURL=index.e9a92ad8.css.map */
