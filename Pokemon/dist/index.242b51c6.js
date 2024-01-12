@@ -16,6 +16,7 @@ function getColorFromType(type) {
     if (type === "rock") return "rock";
     if (type === "ghost") return "ghost";
     if (type === "steel") return "stell";
+    return "black";
 }
 async function printResult() {
     const apiURL = "https://pokeapi.co/api/v2/pokemon?limit=150&offset=0";

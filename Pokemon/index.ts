@@ -70,6 +70,8 @@ function getColorFromType(type: string) {
   if (type === "steel") {
     return "stell";
   }
+
+  return "black";
 }
 
 async function printResult() {

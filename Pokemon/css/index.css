@@ -57,6 +57,10 @@
   gap: 6px;
 }
 
+.pokemon-type {
+  color: rgb(161, 161, 161);
+}
+
 .grass {
   background-color: #b8dcaa;
 }

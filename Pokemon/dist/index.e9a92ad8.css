@@ -54,6 +54,10 @@
   display: flex;
 }
 
+.pokemon-type {
+  color: #a1a1a1;
+}
+
 .grass {
   background-color: #b8dcaa;
 }
