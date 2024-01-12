@@ -16,3 +16,108 @@
 .logo {
   height: 102px;
 }
+
+.container {
+  width: 100%;
+  height: 100%;
+  row-gap: 12px;
+  column-gap: 12px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  margin-top: 24px;
+  padding: 0 12px;
+}
+
+.pokemon-card {
+  width: 47%;
+  height: 100%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 14px;
+
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  padding: 8px;
+}
+
+.cardImg {
+  width: 100%;
+  height: 100%;
+}
+
+.pokemon-name {
+  font-weight: 800;
+}
+
+.typeDiv {
+  display: flex;
+  gap: 6px;
+}
+
+.grass {
+  background-color: #b8dcaa;
+}
+
+.red {
+  background-color: #e8af98e9;
+}
+
+.blue {
+  background-color: #bdd4e9;
+}
+
+.gray {
+  background-color: rgb(189, 186, 182);
+}
+
+.bug {
+  background-color: rgb(115, 178, 115);
+}
+
+.purple {
+  background-color: rgb(220, 184, 231);
+}
+
+.electric {
+  background-color: rgb(255, 255, 122);
+}
+
+.pink {
+  background-color: rgb(249, 215, 221);
+}
+
+.ground {
+  background-color: rgb(184, 184, 114);
+}
+
+.ice {
+  background-color: #87b5e0;
+}
+
+.fighting {
+  background-color: rgb(124, 34, 34);
+}
+.flying {
+  background-color: rgb(157, 87, 157);
+}
+.psychic {
+  background-color: rgb(217, 119, 228);
+}
+.rock {
+  background-color: rgb(163, 144, 14);
+}
+.ghost {
+  background-color: rgb(88, 64, 90);
+}
+.stell {
+  background-color: rgb(191, 191, 191);
+}
+
+@media (min-width: 545px) {
+  .pokemon-card {
+    width: 18%;
+  }
+}
