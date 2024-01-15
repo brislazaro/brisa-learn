@@ -1,0 +1,46 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.header {
+  background-color: #0000;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 164px;
+  height: 40px;
+  padding-left: 6px;
+  display: flex;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+
+.cosa {
+  background-color: #de5457;
+  justify-content: flex-end;
+  align-items: center;
+  height: 150px;
+  display: flex;
+}
+
+.logo {
+  width: 134px;
+  padding-right: 12px;
+}
+
+.backButton {
+  color: #fff;
+  font-size: 24px;
+  text-decoration: none;
+}
+
+.header-info {
+  color: #fff;
+  font-size: 18px;
+  font-weight: 500;
+}
+
+/*# sourceMappingURL=pokemon.7a7add17.css.map */

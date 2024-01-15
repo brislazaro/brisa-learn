@@ -1,0 +1,44 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.header {
+  height: 40px;
+  background-color: transparent;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 164px;
+  padding-left: 6px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+
+.cosa {
+  height: 150px;
+  background-color: #de5457;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.logo {
+  width: 134px;
+  padding-right: 12px;
+}
+
+.backButton {
+  text-decoration: none;
+  color: white;
+  font-size: 24px;
+}
+
+.header-info {
+  font-weight: 500;
+  font-size: 18px;
+  color: white;
+}

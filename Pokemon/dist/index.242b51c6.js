@@ -46,7 +46,7 @@ function printCard(pokemon) {
     const paddedId = String(pokemon.id).padStart(3, "0");
     const pokemonCard = document.createElement("a");
     pokemonCard.classList.add("pokemon-card");
-    pokemonCard.href = "./pokemon.html";
+    pokemonCard.href = `./pokemon.html?name=${pokemon.name}`;
     container?.appendChild(pokemonCard);
     const img = document.createElement("img");
     img.classList.add("cardImg");
@@ -71,7 +71,6 @@ function printCard(pokemon) {
         pokemonTypeCard.innerHTML = element.type.name;
         typeDiv.appendChild(pokemonTypeCard);
     }
-} // fetch de las cosas
- // const result:PokemonListResponse[] = response.results
+}
 
 //# sourceMappingURL=index.242b51c6.js.map

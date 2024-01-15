@@ -118,7 +118,7 @@ function printCard(pokemon) {
 
   const pokemonCard = document.createElement("a");
   pokemonCard.classList.add("pokemon-card");
-  pokemonCard.href = "./pokemon.html";
+  pokemonCard.href = `./pokemon.html?name=${pokemon.name}`;
   container?.appendChild(pokemonCard);
 
   const img = document.createElement("img");
@@ -152,6 +152,3 @@ function printCard(pokemon) {
     typeDiv.appendChild(pokemonTypeCard);
   }
 }
-// fetch de las cosas
-
-// const result:PokemonListResponse[] = response.results
