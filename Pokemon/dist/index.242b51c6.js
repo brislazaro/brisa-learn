@@ -16,6 +16,7 @@ function getColorFromType(type) {
     if (type === "rock") return "rock";
     if (type === "ghost") return "ghost";
     if (type === "steel") return "stell";
+    if (type === "dragon") return "dragon";
     return "black";
 }
 async function printResult() {
@@ -30,45 +31,46 @@ async function printResult() {
         const unresolvedReq = fetch(apiPersonaje);
         unresolvedPokemons.push(unresolvedReq);
     }
-    console.log(unresolvedPokemons);
     const resolvedPokemons = await Promise.all(unresolvedPokemons);
     for(let i = 0; i < resolvedPokemons.length; i++){
         const currentPokemon = resolvedPokemons[i];
         const finalPokemon = await currentPokemon.json();
-        const paddedId = String(finalPokemon.id).padStart(3, "0");
-        console.log(finalPokemon);
-        // Pintar card del pokemon
-        const pokemonCard = document.createElement("div");
-        pokemonCard.classList.add("pokemon-card");
-        container?.appendChild(pokemonCard);
-        const img = document.createElement("img");
-        img.classList.add("cardImg");
-        img.src = `https://assets.pokemon.com/assets/cms2/img/pokedex/full/${paddedId}.png`;
-        pokemonCard.appendChild(img);
-        const pokemonName = document.createElement("p");
-        pokemonName.classList.add("pokemon-name");
-        pokemonName.innerHTML = capitalize(finalPokemon.name);
-        pokemonCard.appendChild(pokemonName);
-        const typeDiv = document.createElement("div");
-        typeDiv.classList.add("typeDiv");
-        pokemonCard.appendChild(typeDiv);
-        const firstPokemonType = finalPokemon.types[0];
-        const typeColor = getColorFromType(firstPokemonType.type.name);
-        pokemonCard.classList.add(typeColor);
-        const pokemonTypes = finalPokemon.types;
-        for(let i = 0; i < pokemonTypes.length; i++){
-            const element = pokemonTypes[i];
-            console.log(element.type.name);
-            const pokemonTypeCard = document.createElement("p");
-            pokemonTypeCard.classList.add("pokemon-type");
-            pokemonTypeCard.innerHTML = element.type.name;
-            typeDiv.appendChild(pokemonTypeCard);
-        }
+        printCard(finalPokemon);
     }
 }
 printResult();
 function capitalize(word) {
     return word[0].toUpperCase() + word.slice(1);
+}
+function printCard(pokemon) {
+    const paddedId = String(pokemon.id).padStart(3, "0");
+    const pokemonCard = document.createElement("a");
+    pokemonCard.classList.add("pokemon-card");
+    pokemonCard.href = "./pokemon.html";
+    container?.appendChild(pokemonCard);
+    const img = document.createElement("img");
+    img.classList.add("cardImg");
+    img.src = `https://assets.pokemon.com/assets/cms2/img/pokedex/full/${paddedId}.png`;
+    pokemonCard.appendChild(img);
+    const pokemonName = document.createElement("p");
+    pokemonName.classList.add("pokemon-name");
+    pokemonName.innerHTML = capitalize(pokemon.name);
+    pokemonCard.appendChild(pokemonName);
+    const typeDiv = document.createElement("div");
+    typeDiv.classList.add("typeDiv");
+    pokemonCard.appendChild(typeDiv);
+    const firstPokemonType = pokemon.types[0];
+    const typeColor = getColorFromType(firstPokemonType.type.name);
+    pokemonCard.classList.add(typeColor);
+    const pokemonTypes = pokemon.types;
+    for(let i = 0; i < pokemonTypes.length; i++){
+        const element = pokemonTypes[i];
+        console.log(element.type.name);
+        const pokemonTypeCard = document.createElement("p");
+        pokemonTypeCard.classList.add("pokemon-type");
+        pokemonTypeCard.innerHTML = element.type.name;
+        typeDiv.appendChild(pokemonTypeCard);
+    }
 } // fetch de las cosas
  // const result:PokemonListResponse[] = response.results
 

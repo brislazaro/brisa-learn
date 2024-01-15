@@ -41,6 +41,9 @@
 
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   padding: 8px;
+
+  cursor: pointer;
+  text-decoration: none;
 }
 
 .cardImg {
@@ -50,6 +53,7 @@
 
 .pokemon-name {
   font-weight: 800;
+  color: black;
 }
 
 .typeDiv {
@@ -58,7 +62,7 @@
 }
 
 .pokemon-type {
-  color: rgb(161, 161, 161);
+  color: rgb(101, 101, 101);
 }
 
 .grass {
@@ -118,6 +122,9 @@
 }
 .stell {
   background-color: rgb(191, 191, 191);
+}
+.dragon {
+  background-color: rgba(156, 74, 156, 0.798);
 }
 
 @media (min-width: 545px) {
