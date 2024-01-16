@@ -1,9 +1,78 @@
 const body = document.querySelector(".body");
 const pokemonID = document.querySelector(".header-info");
 const pokemonContainer = document.querySelector(".container");
+const above = document.querySelector(".above-section");
 
 const searchParams = new URLSearchParams(window.location.search);
 const pokemonName = searchParams.get("name");
+
+function getColorFromTypePokemon(type: Type) {
+  if (type === "grass") {
+    return "grass";
+  }
+
+  if (type === "fire") {
+    return "red";
+  }
+
+  if (type === "water") {
+    return "blue";
+  }
+
+  if (type === "bug") {
+    return "bug";
+  }
+
+  if (type === "normal") {
+    return "gray";
+  }
+
+  if (type === "poison") {
+    return "purple";
+  }
+
+  if (type === "electric") {
+    return "electric";
+  }
+
+  if (type === "fairy") {
+    return "pink";
+  }
+
+  if (type === "ground") {
+    return "ground";
+  }
+
+  if (type === "ice") {
+    return "ice";
+  }
+
+  if (type === "fighting") {
+    return "fighting";
+  }
+
+  if (type === "flying") {
+    return "flying";
+  }
+
+  if (type === "psychic") {
+    return "psychic";
+  }
+  if (type === "rock") {
+    return "rock";
+  }
+  if (type === "ghost") {
+    return "ghost";
+  }
+  if (type === "steel") {
+    return "stell";
+  }
+  if (type === "dragon") {
+    return "dragon";
+  }
+
+  return "black";
+}
 
 async function pokemonData(name: string) {
   const apiURL = `https://pokeapi.co/api/v2/pokemon/${name}`;
@@ -32,6 +101,10 @@ function headerInfo(info: any) {
 }
 
 function printPokemon(pokemon: Pokemon) {
+  const firstPokemonType = pokemon.types[0].type.name;
+  const typeColor = getColorFromTypePokemon(firstPokemonType);
+  above?.classList.add(typeColor);
+
   const id = String(pokemon.id).padStart(3, "0");
 
   const img = document.createElement("img");
@@ -51,13 +124,16 @@ function printPokemon(pokemon: Pokemon) {
   pokemonContainer?.appendChild(divType);
 
   for (let i = 0; i < types.length; i++) {
-    const pokemonTypes = types[i];
+    const pokemonType = types[i];
 
-    console.log(pokemonTypes);
+    console.log(pokemonType);
 
     const type = document.createElement("p");
     type.classList.add("typeCard");
-    type.innerHTML = pokemonTypes.type.name;
+    type.innerHTML = pokemonType.type.name;
+    const tipos = getColorFromTypePokemon(pokemonType.type.name);
+    type.classList.add(tipos);
+
     divType.appendChild(type);
   }
 

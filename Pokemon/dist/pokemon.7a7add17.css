@@ -75,7 +75,6 @@
 }
 
 .typeCard {
-  background-color: #de5457;
   border: none;
   border-radius: 10px;
   padding: 4px 12px;
@@ -84,6 +83,78 @@
 
 .divInfo {
   align-self: flex-start;
+}
+
+.pokemon-type {
+  color: #656565;
+}
+
+.grass {
+  background-color: #b8dcaa;
+}
+
+.red {
+  background-color: #e8af98e9;
+}
+
+.blue {
+  background-color: #bdd4e9;
+}
+
+.gray {
+  background-color: #bdbab6;
+}
+
+.bug {
+  background-color: #73b273;
+}
+
+.purple {
+  background-color: #dcb8e7;
+}
+
+.electric {
+  background-color: #ffff7a;
+}
+
+.pink {
+  background-color: #f9d7dd;
+}
+
+.ground {
+  background-color: #b8b872;
+}
+
+.ice {
+  background-color: #87b5e0;
+}
+
+.fighting {
+  background-color: #7c2222;
+}
+
+.flying {
+  background-color: #9d579d;
+}
+
+.psychic {
+  background-color: #d977e4;
+}
+
+.rock {
+  background-color: #a3900e;
+}
+
+.ghost {
+  background-color: #58405a;
+}
+
+.stell {
+  background-color: #bfbfbf;
+}
+
+.dragon {
+  background-color: #9c4a9ccb;
 }
 
 @media screen and (width >= 390px) {
