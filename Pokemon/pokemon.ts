@@ -80,10 +80,15 @@ async function pokemonData(name: string) {
   let response = await fetch(apiURL);
   let pokemonInfo: Pokemon = await response.json();
 
+  const apiInfo = `https://pokeapi.co/api/v2/pokemon-species/${name}/`;
+  let info = await fetch(apiInfo);
+  // TODO:cambiar type
+  let description: Pokemon = await info.json();
+
   console.log(pokemonInfo);
 
   headerInfo(pokemonInfo);
-  printPokemon(pokemonInfo);
+  printPokemon(pokemonInfo, description);
 }
 
 if (!pokemonName) {
@@ -100,7 +105,8 @@ function headerInfo(info: any) {
   pokemonID?.appendChild(id);
 }
 
-function printPokemon(pokemon: Pokemon) {
+// TODO: cambiar el tipo de description
+function printPokemon(pokemon: Pokemon, description: Pokemon) {
   const firstPokemonType = pokemon.types[0].type.name;
   const typeColor = getColorFromTypePokemon(firstPokemonType);
   above?.classList.add(typeColor);
@@ -142,6 +148,42 @@ function printPokemon(pokemon: Pokemon) {
   pokemonContainer?.appendChild(divInfo);
 
   const infoText = document.createElement("p");
+  infoText.classList.add("infoText");
   infoText.innerHTML = "Information";
   divInfo.appendChild(infoText);
+
+  const descriptionPokemon = document.createElement("p");
+  descriptionPokemon.innerHTML = description.flavor_text_entries[0].flavor_text;
+  divInfo.appendChild(descriptionPokemon);
+
+  const weight = document.createElement("p");
+  weight.innerHTML = `Weight : ${pokemon.weight} KG`;
+  divInfo.appendChild(weight);
+
+  const height = document.createElement("p");
+  height.innerHTML = `Height : ${pokemon.weight} M`;
+  divInfo.appendChild(height);
+
+  const abilities = pokemon.abilities;
+
+  const divAbilities = document.createElement("div");
+  divInfo.appendChild(divAbilities);
+
+  const abilitiesText = document.createElement("p");
+  abilitiesText.innerHTML = `Abilities : `;
+  divAbilities.appendChild(abilitiesText);
+
+  for (let i = 0; i < abilities.length; i++) {
+    const element = abilities[i];
+
+    abilitiesText.innerHTML += `${element.ability.name}`;
+
+    if (i === 0) {
+      abilitiesText.innerHTML += ", ";
+    }
+  }
+
+  const species = document.createElement("p");
+  species.innerHTML = `Specie : ${pokemon.species.name}`;
+  divInfo.appendChild(species);
 }

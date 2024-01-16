@@ -31,7 +31,10 @@ type Pokemon = {
   id: number;
   height: number;
   weight: number;
+  abilities: abilities[];
+  species: species;
   types: PokemonType[];
+  flavor_text_entries: [{ flavor_text: string }];
 };
 
 type PokemonListResponse = {
@@ -39,6 +42,19 @@ type PokemonListResponse = {
 };
 
 type LitePokemon = {
+  name: string;
+  url: string;
+};
+type abilities = {
+  ability: {
+    name: string;
+    url: string;
+  };
+  is_hidden: boolean;
+  slot: number;
+};
+
+type species = {
   name: string;
   url: string;
 };
