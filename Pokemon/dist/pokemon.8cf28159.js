@@ -41,6 +41,12 @@ function printPokemon(pokemon) {
         type.innerHTML = pokemonTypes.type.name;
         divType.appendChild(type);
     }
+    const divInfo = document.createElement("div");
+    divInfo.classList.add("divInfo");
+    pokemonContainer?.appendChild(divInfo);
+    const infoText = document.createElement("p");
+    infoText.innerHTML = "Information";
+    divInfo.appendChild(infoText);
 }
 
 //# sourceMappingURL=pokemon.8cf28159.js.map
