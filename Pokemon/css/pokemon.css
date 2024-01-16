@@ -19,8 +19,8 @@
   right: 0;
 }
 
-.cosa {
-  height: 150px;
+.above-section {
+  height: 200px;
   background-color: #de5457;
   display: flex;
   justify-content: flex-end;
@@ -42,4 +42,87 @@
   font-weight: 500;
   font-size: 18px;
   color: white;
+}
+
+.container {
+  /* TODO: Add styles */
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+  position: relative;
+  padding-top: 80px;
+  border-top: 6px;
+}
+
+.cardImg {
+  width: 200px;
+  position: absolute;
+  top: -130px;
+}
+
+.nameCard {
+  font-weight: 500;
+  font-size: 30px;
+}
+
+.divType {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+}
+
+.typeCard {
+  font-size: 12px;
+  background-color: #de5457;
+  border: none;
+  border-radius: 10px;
+  padding: 4px 12px;
+}
+
+@media screen and (min-width: 390px) {
+  .header {
+    height: 60px;
+    padding: 24px;
+  }
+
+  .above-section {
+    height: 250px;
+  }
+
+  .backButton {
+    text-decoration: none;
+    color: white;
+    font-size: 34px;
+  }
+
+  .header-info {
+    font-weight: 500;
+    font-size: 24px;
+    color: white;
+  }
+
+  .nameCard {
+    font-weight: 500;
+    font-size: 44px;
+  }
+
+  .divType {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .typeCard {
+    font-size: 14px;
+    background-color: #de5457;
+    border: none;
+    border-radius: 10px;
+    padding: 4px 12px;
+  }
 }

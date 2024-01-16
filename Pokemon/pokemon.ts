@@ -5,42 +5,6 @@ const pokemonContainer = document.querySelector(".container");
 const searchParams = new URLSearchParams(window.location.search);
 const pokemonName = searchParams.get("name");
 
-enum Type {
-  Grass = "grass",
-  Fire = "fire",
-  Water = "water",
-  Bug = "bug",
-  Normal = "normal",
-  Poison = "poison",
-  Electric = "electric",
-  Fairy = "fairy",
-  Ground = "ground",
-  Ice = "ice",
-  Fighting = "fighting",
-  Flying = "flying",
-  Psychic = "psychic",
-  Rock = "rock",
-  Ghost = "ghost",
-  Steel = "steel",
-  Dragon = "dragon",
-}
-
-type PokemonType = {
-  slot: number;
-  type: {
-    name: Type;
-    url: string;
-  };
-};
-
-type Pokemon = {
-  name: string;
-  id: number;
-  height: number;
-  weight: number;
-  types: PokemonType[];
-};
-
 async function pokemonData(name: string) {
   const apiURL = `https://pokeapi.co/api/v2/pokemon/${name}`;
 
@@ -51,8 +15,6 @@ async function pokemonData(name: string) {
 
   headerInfo(pokemonInfo);
   printPokemon(pokemonInfo);
-
-  const types = pokemonInfo.types;
 }
 
 if (!pokemonName) {
@@ -70,11 +32,32 @@ function headerInfo(info: any) {
 }
 
 function printPokemon(pokemon: Pokemon) {
+  const id = String(pokemon.id).padStart(3, "0");
+
+  const img = document.createElement("img");
+  img.classList.add("cardImg");
+  img.src = `https://assets.pokemon.com/assets/cms2/img/pokedex/full/${id}.png`;
+  pokemonContainer?.appendChild(img);
+
   const name = document.createElement("p");
+  name.classList.add("nameCard");
   name.innerHTML = pokemon.name;
   pokemonContainer?.appendChild(name);
 
-  const type = document.createElement("p");
-  type.innerHTML = `${pokemon.id}`;
-  pokemonContainer?.appendChild(type);
+  const types = pokemon.types;
+
+  const divType = document.createElement("div");
+  divType.classList.add("divType");
+  pokemonContainer?.appendChild(divType);
+
+  for (let i = 0; i < types.length; i++) {
+    const pokemonTypes = types[i];
+
+    console.log(pokemonTypes);
+
+    const type = document.createElement("p");
+    type.classList.add("typeCard");
+    type.innerHTML = pokemonTypes.type.name;
+    divType.appendChild(type);
+  }
 }

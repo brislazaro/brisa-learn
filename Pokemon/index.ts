@@ -1,14 +1,5 @@
 const container = document.querySelector(".container");
 
-type PokemonListResponse = {
-  results: LitePokemon[];
-};
-
-type LitePokemon = {
-  name: string;
-  url: string;
-};
-
 function getColorFromType(type: string) {
   if (type === "grass") {
     return "grass";
@@ -113,7 +104,7 @@ function capitalize(word: string) {
   return word[0].toUpperCase() + word.slice(1);
 }
 
-function printCard(pokemon) {
+function printCard(pokemon: Pokemon) {
   const paddedId = String(pokemon.id).padStart(3, "0");
 
   const pokemonCard = document.createElement("a");
