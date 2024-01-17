@@ -56,7 +56,7 @@ function printPokemon(pokemon, description) {
     pokemonContainer?.appendChild(img);
     const name = document.createElement("p");
     name.classList.add("nameCard");
-    name.innerHTML = pokemon.name;
+    name.innerHTML = capitalize(pokemon.name);
     pokemonContainer?.appendChild(name);
     const types = pokemon.types;
     const divType = document.createElement("div");
@@ -75,22 +75,51 @@ function printPokemon(pokemon, description) {
     const divInfo = document.createElement("div");
     divInfo.classList.add("divInfo");
     pokemonContainer?.appendChild(divInfo);
+    title("Informacion");
+    descripcion(pokemon, description);
+    title("Static Basic");
+    const stats = pokemon.stats;
+    for(let i = 0; i < stats.length; i++){
+        const currentStat = stats[i];
+        const statContainer = document.createElement("div");
+        statContainer.classList.add("stat");
+        divInfo.appendChild(statContainer);
+        const label = document.createElement("label");
+        label.innerHTML = capitalize(currentStat.stat.name);
+        statContainer.appendChild(label);
+        const progressBar = document.createElement("progress");
+        progressBar.classList.add("progress");
+        progressBar.max = 155;
+        progressBar.value = currentStat.base_stat;
+        // const statColor = getColorFromTypePokemon(firstPokemonType);
+        // progressBar.classList.add(statColor);
+        statContainer.appendChild(progressBar);
+    }
+}
+function title(mensaje) {
+    const divInfo = document.querySelector(".divInfo");
     const infoText = document.createElement("p");
     infoText.classList.add("infoText");
-    infoText.innerHTML = "Information";
-    divInfo.appendChild(infoText);
+    infoText.innerHTML = mensaje;
+    divInfo?.appendChild(infoText);
+}
+function descripcion(pokemon, descripcion) {
+    const divInfo = document.querySelector(".divInfo");
     const descriptionPokemon = document.createElement("p");
-    descriptionPokemon.innerHTML = description.flavor_text_entries[0].flavor_text;
-    divInfo.appendChild(descriptionPokemon);
+    descriptionPokemon.innerHTML = descripcion.flavor_text_entries[0].flavor_text;
+    divInfo?.appendChild(descriptionPokemon);
+    const infoFisica = document.createElement("div");
+    infoFisica.classList.add("infoFisica");
+    divInfo?.appendChild(infoFisica);
     const weight = document.createElement("p");
     weight.innerHTML = `Weight : ${pokemon.weight} KG`;
-    divInfo.appendChild(weight);
+    infoFisica.appendChild(weight);
     const height = document.createElement("p");
     height.innerHTML = `Height : ${pokemon.weight} M`;
-    divInfo.appendChild(height);
+    infoFisica.appendChild(height);
     const abilities = pokemon.abilities;
     const divAbilities = document.createElement("div");
-    divInfo.appendChild(divAbilities);
+    infoFisica.appendChild(divAbilities);
     const abilitiesText = document.createElement("p");
     abilitiesText.innerHTML = `Abilities : `;
     divAbilities.appendChild(abilitiesText);
@@ -101,7 +130,10 @@ function printPokemon(pokemon, description) {
     }
     const species = document.createElement("p");
     species.innerHTML = `Specie : ${pokemon.species.name}`;
-    divInfo.appendChild(species);
+    infoFisica.appendChild(species);
+}
+function capitalize(word) {
+    return word[0].toUpperCase() + word.slice(1);
 }
 
 //# sourceMappingURL=pokemon.8cf28159.js.map

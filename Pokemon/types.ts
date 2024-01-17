@@ -35,6 +35,7 @@ type Pokemon = {
   species: species;
   types: PokemonType[];
   flavor_text_entries: [{ flavor_text: string }];
+  stats: stats[];
 };
 
 type PokemonListResponse = {
@@ -57,4 +58,13 @@ type abilities = {
 type species = {
   name: string;
   url: string;
+};
+
+type stats = {
+  base_stat: number;
+  effort: number;
+  stat: {
+    name: string;
+    url: string;
+  };
 };

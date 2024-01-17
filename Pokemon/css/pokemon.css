@@ -13,7 +13,7 @@
   align-items: center;
 
   padding: 0 6px;
-  position: fixed;
+  position: absolute;
   top: 0;
   left: 0;
   right: 0;
@@ -92,8 +92,33 @@
   gap: 10px;
 }
 
+.infoFisica {
+  display: flex;
+  flex-direction: column;
+  margin-top: 12px;
+  gap: 2px;
+  margin-bottom: 20px;
+}
+
 .infoText {
   font-weight: 800;
+}
+
+.stat {
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+  justify-content: space-between;
+}
+
+label {
+  font-size: 16px;
+  max-width: 40px;
+}
+
+.progress {
+  margin-bottom: 20px;
+  width: 220px;
 }
 
 .pokemon-type {
