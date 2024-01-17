@@ -147,11 +147,11 @@ function printPokemon(pokemon: Pokemon, description: Pokemon) {
   divInfo.classList.add("divInfo");
   pokemonContainer?.appendChild(divInfo);
 
-  title("Informacion");
+  showTitle("Informacion");
 
-  descripcion(pokemon, description);
+  showDescripcion(pokemon, description);
 
-  title("Static Basic");
+  showTitle("Static Basic");
 
   const stats = pokemon.stats;
 
@@ -176,7 +176,7 @@ function printPokemon(pokemon: Pokemon, description: Pokemon) {
   }
 }
 
-function title(mensaje: string) {
+function showTitle(mensaje: string) {
   const divInfo = document.querySelector(".divInfo");
   const infoText = document.createElement("p");
   infoText.classList.add("infoText");
@@ -184,7 +184,7 @@ function title(mensaje: string) {
   divInfo?.appendChild(infoText);
 }
 
-function descripcion(pokemon: Pokemon, descripcion: Pokemon) {
+function showDescripcion(pokemon: Pokemon, descripcion: Pokemon) {
   const divInfo = document.querySelector(".divInfo");
 
   const descriptionPokemon = document.createElement("p");

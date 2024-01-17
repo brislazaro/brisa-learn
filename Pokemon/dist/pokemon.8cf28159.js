@@ -75,9 +75,9 @@ function printPokemon(pokemon, description) {
     const divInfo = document.createElement("div");
     divInfo.classList.add("divInfo");
     pokemonContainer?.appendChild(divInfo);
-    title("Informacion");
-    descripcion(pokemon, description);
-    title("Static Basic");
+    showTitle("Informacion");
+    showDescripcion(pokemon, description);
+    showTitle("Static Basic");
     const stats = pokemon.stats;
     for(let i = 0; i < stats.length; i++){
         const currentStat = stats[i];
@@ -96,14 +96,14 @@ function printPokemon(pokemon, description) {
         statContainer.appendChild(progressBar);
     }
 }
-function title(mensaje) {
+function showTitle(mensaje) {
     const divInfo = document.querySelector(".divInfo");
     const infoText = document.createElement("p");
     infoText.classList.add("infoText");
     infoText.innerHTML = mensaje;
     divInfo?.appendChild(infoText);
 }
-function descripcion(pokemon, descripcion) {
+function showDescripcion(pokemon, descripcion) {
     const divInfo = document.querySelector(".divInfo");
     const descriptionPokemon = document.createElement("p");
     descriptionPokemon.innerHTML = descripcion.flavor_text_entries[0].flavor_text;
