@@ -237,6 +237,19 @@ label {
     color: #656565;
   }
 
+  .stat {
+    flex-direction: row;
+    justify-content: flex-start;
+    gap: 180px;
+    display: flex;
+  }
+
+  .progress {
+    width: 300px;
+    margin-bottom: 20px;
+    padding: 12px;
+  }
+
   .grass {
     background-color: #b8dcaa;
   }

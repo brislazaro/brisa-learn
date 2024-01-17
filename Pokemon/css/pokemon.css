@@ -233,6 +233,17 @@ label {
     color: rgb(101, 101, 101);
   }
 
+  .stat {
+    display: flex;
+    flex-direction: row;
+    gap: 180px;
+    justify-content: flex-start;
+  }
+  .progress {
+    margin-bottom: 20px;
+    width: 300px;
+    padding: 12px;
+  }
   .grass {
     background-color: #b8dcaa;
   }
