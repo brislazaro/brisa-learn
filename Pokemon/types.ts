@@ -49,6 +49,7 @@ type LitePokemon = {
   name: string;
   url: string;
 };
+
 type abilities = {
   ability: {
     name: string;

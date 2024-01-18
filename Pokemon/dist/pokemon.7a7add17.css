@@ -124,8 +124,17 @@
 }
 
 label {
-  max-width: 40px;
+  width: 20%;
   font-size: 16px;
+}
+
+.barra {
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  width: 80%;
+  display: flex;
 }
 
 .progress {
@@ -260,6 +269,10 @@ label {
     width: 100%;
     padding: 12px;
     display: flex;
+  }
+
+  .barra {
+    font-size: medium;
   }
 
   .progress {

@@ -85,14 +85,20 @@ function printPokemon(pokemon, description) {
         divInfo.appendChild(statContainer);
         const label = document.createElement("label");
         label.innerHTML = capitalize(currentStat.stat.name);
+        const statColor = getColorFromTypePokemon(firstPokemonType);
+        label.classList.add(statColor);
         statContainer.appendChild(label);
+        const barra = document.createElement("div");
+        barra.classList.add("barra");
+        statContainer.appendChild(barra);
+        const value = document.createElement("p");
+        value.innerHTML = `${currentStat.base_stat}`;
+        barra.appendChild(value);
         const progressBar = document.createElement("progress");
         progressBar.classList.add("progress");
         progressBar.max = 155;
         progressBar.value = currentStat.base_stat;
-        // const statColor = getColorFromTypePokemon(firstPokemonType);
-        // progressBar.classList.add(statColor);
-        statContainer.appendChild(progressBar);
+        barra.appendChild(progressBar);
     }
 }
 function showTitle(mensaje) {
