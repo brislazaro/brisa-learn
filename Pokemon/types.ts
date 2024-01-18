@@ -34,8 +34,11 @@ type Pokemon = {
   abilities: abilities[];
   species: species;
   types: PokemonType[];
-  flavor_text_entries: [{ flavor_text: string }];
   stats: stats[];
+};
+
+type PokemonWithDescription = {
+  flavor_text_entries: { flavor_text: string }[];
 };
 
 type PokemonListResponse = {

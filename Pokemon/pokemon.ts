@@ -83,7 +83,7 @@ async function pokemonData(name: string) {
   const apiInfo = `https://pokeapi.co/api/v2/pokemon-species/${name}/`;
   let info = await fetch(apiInfo);
   // TODO:cambiar type
-  let description: Pokemon = await info.json();
+  let description: PokemonWithDescription = await info.json();
 
   console.log(pokemonInfo);
 
@@ -105,8 +105,7 @@ function headerInfo(info: any) {
   pokemonID?.appendChild(id);
 }
 
-// TODO: cambiar el tipo de description
-function printPokemon(pokemon: Pokemon, description: Pokemon) {
+function printPokemon(pokemon: Pokemon, description: PokemonWithDescription) {
   const firstPokemonType = pokemon.types[0].type.name;
   const typeColor = getColorFromTypePokemon(firstPokemonType);
   above?.classList.add(typeColor);
@@ -184,7 +183,10 @@ function showTitle(mensaje: string) {
   divInfo?.appendChild(infoText);
 }
 
-function showDescripcion(pokemon: Pokemon, descripcion: Pokemon) {
+function showDescripcion(
+  pokemon: Pokemon,
+  descripcion: PokemonWithDescription
+) {
   const divInfo = document.querySelector(".divInfo");
 
   const descriptionPokemon = document.createElement("p");

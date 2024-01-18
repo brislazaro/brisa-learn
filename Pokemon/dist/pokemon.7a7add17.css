@@ -5,6 +5,20 @@
   font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
+.page-container {
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  display: flex;
+}
+
+.pokemon-description-container {
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  display: flex;
+}
+
 .header {
   background-color: #0000;
   justify-content: space-between;
@@ -19,7 +33,6 @@
 }
 
 .above-section {
-  background-color: #de5457;
   justify-content: flex-end;
   align-items: center;
   height: 200px;
@@ -29,6 +42,7 @@
 .logo {
   width: 134px;
   padding-right: 12px;
+  transform: rotate(12deg);
 }
 
 .backButton {
@@ -70,7 +84,8 @@
   justify-content: center;
   align-items: center;
   gap: 6px;
-  margin-top: 6px;
+  margin-top: 10px;
+  margin-bottom: 10px;
   display: flex;
 }
 
@@ -84,7 +99,7 @@
 .divInfo {
   flex-direction: column;
   align-self: flex-start;
-  gap: 10px;
+  gap: 18px;
   padding: 12px;
   display: flex;
 }
@@ -102,7 +117,7 @@
 }
 
 .stat {
-  flex-direction: row;
+  flex-direction: column;
   justify-content: space-between;
   gap: 16px;
   display: flex;
@@ -114,8 +129,7 @@ label {
 }
 
 .progress {
-  width: 220px;
-  margin-bottom: 20px;
+  width: 100%;
 }
 
 .pokemon-type {
@@ -200,6 +214,10 @@ label {
     height: 250px;
   }
 
+  .container {
+    max-width: 500px;
+  }
+
   .backButton {
     color: #fff;
     font-size: 34px;
@@ -222,6 +240,7 @@ label {
     justify-content: center;
     align-items: center;
     gap: 6px;
+    margin-bottom: 40px;
     display: flex;
   }
 
@@ -233,21 +252,23 @@ label {
     font-size: 14px;
   }
 
-  .pokemon-type {
-    color: #656565;
-  }
-
   .stat {
     flex-direction: row;
-    justify-content: flex-start;
-    gap: 180px;
+    justify-content: center;
+    align-items: center;
+    gap: 120px;
+    width: 100%;
+    padding: 12px;
     display: flex;
   }
 
   .progress {
     width: 300px;
-    margin-bottom: 20px;
     padding: 12px;
+  }
+
+  .pokemon-type {
+    color: #656565;
   }
 
   .grass {

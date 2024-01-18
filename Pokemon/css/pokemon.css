@@ -5,6 +5,20 @@
   font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
+.page-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.pokemon-description-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .header {
   height: 40px;
   background-color: transparent;
@@ -21,7 +35,6 @@
 
 .above-section {
   height: 200px;
-  background-color: #de5457;
   display: flex;
   justify-content: flex-end;
   align-items: center;
@@ -30,6 +43,7 @@
 .logo {
   width: 134px;
   padding-right: 12px;
+  transform: rotate(12deg);
 }
 
 .backButton {
@@ -73,7 +87,8 @@
   justify-content: center;
   align-items: center;
   gap: 6px;
-  margin-top: 6px;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
 .typeCard {
@@ -89,7 +104,7 @@
   flex-direction: column;
   align-self: flex-start;
   padding: 12px;
-  gap: 10px;
+  gap: 18px;
 }
 
 .infoFisica {
@@ -106,7 +121,7 @@
 
 .stat {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   gap: 16px;
   justify-content: space-between;
 }
@@ -117,8 +132,7 @@ label {
 }
 
 .progress {
-  margin-bottom: 20px;
-  width: 220px;
+  width: 100%;
 }
 
 .pokemon-type {
@@ -197,6 +211,10 @@ label {
     height: 250px;
   }
 
+  .container {
+    max-width: 500px;
+  }
+
   .backButton {
     text-decoration: none;
     color: white;
@@ -220,6 +238,7 @@ label {
     justify-content: center;
     align-items: center;
     gap: 6px;
+    margin-bottom: 40px;
   }
 
   .typeCard {
@@ -229,21 +248,26 @@ label {
     border-radius: 10px;
     padding: 4px 12px;
   }
+
+  .stat {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 120px;
+    padding: 12px;
+  }
+
+  .progress {
+    width: 300px;
+    padding: 12px;
+  }
+
   .pokemon-type {
     color: rgb(101, 101, 101);
   }
 
-  .stat {
-    display: flex;
-    flex-direction: row;
-    gap: 180px;
-    justify-content: flex-start;
-  }
-  .progress {
-    margin-bottom: 20px;
-    width: 300px;
-    padding: 12px;
-  }
   .grass {
     background-color: #b8dcaa;
   }

@@ -44,7 +44,6 @@ function headerInfo(info) {
     id.innerHTML = `#${paddedId}`;
     pokemonID?.appendChild(id);
 }
-// TODO: cambiar el tipo de description
 function printPokemon(pokemon, description) {
     const firstPokemonType = pokemon.types[0].type.name;
     const typeColor = getColorFromTypePokemon(firstPokemonType);
