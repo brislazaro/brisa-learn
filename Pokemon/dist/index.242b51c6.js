@@ -1,4 +1,6 @@
 const container = document.querySelector(".container");
+const buscador = document.querySelector(".buscador");
+const pokeList = [];
 function getColorFromType(type) {
     if (type === "grass") return "grass";
     if (type === "fire") return "red";
@@ -35,6 +37,7 @@ async function printResult() {
     for(let i = 0; i < resolvedPokemons.length; i++){
         const currentPokemon = resolvedPokemons[i];
         const finalPokemon = await currentPokemon.json();
+        pokeList.push(finalPokemon);
         printCard(finalPokemon);
     }
 }
@@ -65,12 +68,38 @@ function printCard(pokemon) {
     const pokemonTypes = pokemon.types;
     for(let i = 0; i < pokemonTypes.length; i++){
         const element = pokemonTypes[i];
-        console.log(element.type.name);
+        // console.log(element.type.name);
         const pokemonTypeCard = document.createElement("p");
         pokemonTypeCard.classList.add("pokemon-type");
         pokemonTypeCard.innerHTML = element.type.name;
         typeDiv.appendChild(pokemonTypeCard);
     }
 }
+buscador?.addEventListener("change", function(e) {
+    e.preventDefault();
+    const value = e.target.value;
+    if (!value) {
+        container.innerHTML = "";
+        for(let i = 0; i < pokeList.length; i++){
+            const pokemon = pokeList[i];
+            printCard(pokemon);
+        }
+        return;
+    }
+    console.log(value);
+    const filteredPokemons = pokeList.filter((pokemon)=>{
+        if (pokemon.name.includes(value)) return true;
+        else return false;
+    });
+    console.log(filteredPokemons);
+    if (filteredPokemons.length === 0) alert("Inserta un nombre valido");
+    else {
+        container.innerHTML = "";
+        for(let i = 0; i < filteredPokemons.length; i++){
+            const pokemon = filteredPokemons[i];
+            printCard(pokemon);
+        }
+    }
+});
 
 //# sourceMappingURL=index.242b51c6.js.map

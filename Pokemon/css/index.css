@@ -151,4 +151,8 @@
   .pokemon-card {
     width: 18%;
   }
+
+  .buscador {
+    width: 430px;
+  }
 }
