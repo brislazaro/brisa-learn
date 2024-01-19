@@ -173,7 +173,7 @@ label {
 }
 
 .electric {
-  background-color: rgb(255, 255, 122);
+  background-color: rgba(249, 249, 45, 0.534);
 }
 
 .pink {
@@ -210,6 +210,67 @@ label {
   background-color: rgba(156, 74, 156, 0.798);
 }
 
+.grass-color {
+  color: #9cc98a;
+}
+
+.red-color {
+  color: #e8af98e9;
+}
+
+.blue-color {
+  color: #bdd4e9;
+}
+
+.gray-color {
+  color: rgb(189, 186, 182);
+}
+
+.bug-color {
+  color: rgb(115, 178, 115);
+}
+
+.purple-color {
+  color: rgb(220, 184, 231);
+}
+
+.electric-color {
+  color: rgb(234, 234, 54);
+}
+
+.pink-color {
+  color: rgb(249, 215, 221);
+}
+
+.ground-color {
+  color: rgb(184, 184, 114);
+}
+
+.ice-color {
+  color: #87b5e0;
+}
+
+.fighting-color {
+  color: rgb(124, 34, 34);
+}
+.flying-color {
+  color: rgb(157, 87, 157);
+}
+.psychic-color {
+  color: rgb(217, 119, 228);
+}
+.rock-color {
+  color: rgb(163, 144, 14);
+}
+.ghost-color {
+  color: rgb(88, 64, 90);
+}
+.stell-color {
+  color: rgb(191, 191, 191);
+}
+.dragon-color {
+  color: rgba(156, 74, 156, 0.798);
+}
 @media screen and (min-width: 390px) {
   .header {
     height: 60px;

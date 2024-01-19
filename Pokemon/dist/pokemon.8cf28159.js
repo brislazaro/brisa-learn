@@ -24,6 +24,26 @@ function getColorFromTypePokemon(type) {
     if (type === "dragon") return "dragon";
     return "black";
 }
+function textColor(type) {
+    if (type === "grass") return "grass-color";
+    if (type === "fire") return "red-color";
+    if (type === "water") return "blue-color";
+    if (type === "bug") return "bug-color";
+    if (type === "normal") return "gray-color";
+    if (type === "poison") return "purple-color";
+    if (type === "electric") return "electric-color";
+    if (type === "fairy") return "pink-color";
+    if (type === "ground") return "ground-color";
+    if (type === "ice") return "ice-color";
+    if (type === "fighting") return "fighting-color";
+    if (type === "flying") return "flying-color";
+    if (type === "psychic") return "psychic-color";
+    if (type === "rock") return "rock-color";
+    if (type === "ghost") return "ghost-color";
+    if (type === "steel") return "stell-color";
+    if (type === "dragon") return "dragon-color";
+    return "black";
+}
 async function pokemonData(name) {
     const apiURL = `https://pokeapi.co/api/v2/pokemon/${name}`;
     let response = await fetch(apiURL);
@@ -85,7 +105,7 @@ function printPokemon(pokemon, description) {
         divInfo.appendChild(statContainer);
         const label = document.createElement("label");
         label.innerHTML = capitalize(currentStat.stat.name);
-        const statColor = getColorFromTypePokemon(firstPokemonType);
+        const statColor = textColor(firstPokemonType);
         label.classList.add(statColor);
         statContainer.appendChild(label);
         const barra = document.createElement("div");

@@ -170,7 +170,7 @@ label {
 }
 
 .electric {
-  background-color: #ffff7a;
+  background-color: #f9f92d88;
 }
 
 .pink {
@@ -211,6 +211,74 @@ label {
 
 .dragon {
   background-color: #9c4a9ccb;
+}
+
+.grass-color {
+  color: #9cc98a;
+}
+
+.red-color {
+  color: #e8af98e9;
+}
+
+.blue-color {
+  color: #bdd4e9;
+}
+
+.gray-color {
+  color: #bdbab6;
+}
+
+.bug-color {
+  color: #73b273;
+}
+
+.purple-color {
+  color: #dcb8e7;
+}
+
+.electric-color {
+  color: #eaea36;
+}
+
+.pink-color {
+  color: #f9d7dd;
+}
+
+.ground-color {
+  color: #b8b872;
+}
+
+.ice-color {
+  color: #87b5e0;
+}
+
+.fighting-color {
+  color: #7c2222;
+}
+
+.flying-color {
+  color: #9d579d;
+}
+
+.psychic-color {
+  color: #d977e4;
+}
+
+.rock-color {
+  color: #a3900e;
+}
+
+.ghost-color {
+  color: #58405a;
+}
+
+.stell-color {
+  color: #bfbfbf;
+}
+
+.dragon-color {
+  color: #9c4a9ccb;
 }
 
 @media screen and (width >= 390px) {
