@@ -1,6 +1,7 @@
 const header = document.querySelector(".header");
 const container = document.querySelector(".container");
 const buscador = document.querySelector(".buscador") as HTMLInputElement;
+const button = document.querySelector(".button");
 
 const pokeList: Pokemon[] = [];
 
@@ -152,6 +153,7 @@ function printCard(pokemon: Pokemon) {
 
 buscador?.addEventListener("change", function (e: any) {
   e.preventDefault();
+
   const value = e.target.value;
 
   if (!value) {
@@ -192,7 +194,24 @@ buscador?.addEventListener("change", function (e: any) {
 });
 
 function showButton() {
-  const button = document.querySelector(".button");
-
   button?.classList.remove("button-none");
 }
+
+function delateButton() {
+  button?.classList.add("button-none");
+}
+
+button?.addEventListener("click", function () {
+  container.innerHTML = "";
+
+  console.log("hola");
+
+  for (let i = 0; i < pokeList.length; i++) {
+    const element = pokeList[i];
+
+    printCard(element);
+  }
+
+  buscador.value = "";
+  delateButton();
+});
