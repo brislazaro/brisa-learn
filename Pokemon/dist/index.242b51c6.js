@@ -1,7 +1,8 @@
 const header = document.querySelector(".header");
 const container = document.querySelector(".container");
 const buscador = document.querySelector(".buscador");
-const button = document.querySelector(".button");
+const backButton = document.querySelector(".button");
+const spinner = document.querySelector(".loader");
 const pokeList = [];
 function getColorFromType(type) {
     if (type === "grass") return "grass";
@@ -24,6 +25,7 @@ function getColorFromType(type) {
     return "black";
 }
 async function printResult() {
+    showHtmlElement(spinner);
     const apiURL = "https://pokeapi.co/api/v2/pokemon?limit=150&offset=0";
     let response = await fetch(apiURL);
     let json = await response.json();
@@ -36,6 +38,7 @@ async function printResult() {
         unresolvedPokemons.push(unresolvedReq);
     }
     const resolvedPokemons = await Promise.all(unresolvedPokemons);
+    hideHtmlElement(spinner);
     for(let i = 0; i < resolvedPokemons.length; i++){
         const currentPokemon = resolvedPokemons[i];
         const finalPokemon = await currentPokemon.json();
@@ -86,6 +89,7 @@ buscador?.addEventListener("change", function(e) {
             const pokemon = pokeList[i];
             printCard(pokemon);
         }
+        hideHtmlElement(backButton);
         return;
     }
     console.log(value);
@@ -101,16 +105,16 @@ buscador?.addEventListener("change", function(e) {
             const pokemon = filteredPokemons[i];
             printCard(pokemon);
         }
-        showButton();
+        showHtmlElement(backButton);
     }
 });
-function showButton() {
-    button?.classList.remove("button-none");
+function showHtmlElement(element) {
+    element?.classList.remove("hidden");
 }
-function delateButton() {
-    button?.classList.add("button-none");
+function hideHtmlElement(element) {
+    element?.classList.add("hidden");
 }
-button?.addEventListener("click", function() {
+backButton?.addEventListener("click", function() {
     container.innerHTML = "";
     console.log("hola");
     for(let i = 0; i < pokeList.length; i++){
@@ -118,7 +122,7 @@ button?.addEventListener("click", function() {
         printCard(element);
     }
     buscador.value = "";
-    delateButton();
+    hideHtmlElement(backButton);
 });
 
 //# sourceMappingURL=index.242b51c6.js.map

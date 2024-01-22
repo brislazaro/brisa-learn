@@ -2,6 +2,7 @@ const body = document.querySelector(".body");
 const pokemonID = document.querySelector(".header-info");
 const pokemonContainer = document.querySelector(".container");
 const above = document.querySelector(".above-section");
+const spinnerConatiner = document.querySelector("loader");
 const searchParams = new URLSearchParams(window.location.search);
 const pokemonName = searchParams.get("name");
 function getColorFromTypePokemon(type) {
@@ -45,6 +46,7 @@ function textColor(type) {
     return "black";
 }
 async function pokemonData(name) {
+    showHtmlElement(spinnerConatiner);
     const apiURL = `https://pokeapi.co/api/v2/pokemon/${name}`;
     let response = await fetch(apiURL);
     let pokemonInfo = await response.json();
@@ -55,6 +57,7 @@ async function pokemonData(name) {
     console.log(pokemonInfo);
     headerInfo(pokemonInfo);
     printPokemon(pokemonInfo, description);
+    hideHtmlElement(spinnerConatiner);
 }
 if (!pokemonName) alert("I need the pokemon name");
 else pokemonData(pokemonName);
@@ -159,6 +162,12 @@ function showDescripcion(pokemon, descripcion) {
 }
 function capitalize(word) {
     return word[0].toUpperCase() + word.slice(1);
+}
+function showHtmlElement(element) {
+    element?.classList.remove("hidden");
+}
+function hideHtmlElement(element) {
+    element?.classList.add("hidden");
 }
 
 //# sourceMappingURL=pokemon.8cf28159.js.map
