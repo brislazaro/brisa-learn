@@ -1,3 +1,4 @@
+const header = document.querySelector(".header");
 const container = document.querySelector(".container");
 const buscador = document.querySelector(".buscador");
 const pokeList = [];
@@ -99,7 +100,12 @@ buscador?.addEventListener("change", function(e) {
             const pokemon = filteredPokemons[i];
             printCard(pokemon);
         }
+        showButton();
     }
 });
+function showButton() {
+    const button = document.querySelector(".button");
+    button?.classList.remove("button-none");
+}
 
 //# sourceMappingURL=index.242b51c6.js.map

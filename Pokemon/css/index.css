@@ -81,6 +81,16 @@
   gap: 6px;
 }
 
+.button {
+  text-decoration: none;
+  color: white;
+  font-size: 24px;
+}
+
+.button-none {
+  display: none;
+}
+
 .pokemon-type {
   color: rgb(101, 101, 101);
 }

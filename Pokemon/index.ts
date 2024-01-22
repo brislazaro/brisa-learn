@@ -1,3 +1,4 @@
+const header = document.querySelector(".header");
 const container = document.querySelector(".container");
 const buscador = document.querySelector(".buscador") as HTMLInputElement;
 
@@ -185,5 +186,13 @@ buscador?.addEventListener("change", function (e: any) {
 
       printCard(pokemon);
     }
+
+    showButton();
   }
 });
+
+function showButton() {
+  const button = document.querySelector(".button");
+
+  button?.classList.remove("button-none");
+}
