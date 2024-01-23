@@ -143,23 +143,30 @@ function textColor(type: Type) {
 }
 
 async function pokemonData(name: string) {
-  showHtmlElement(spinnerConatiner!);
-  const apiURL = `https://pokeapi.co/api/v2/pokemon/${name}`;
+  try {
+    showHtmlElement(spinnerConatiner!);
+    const apiURL = `https://pokeapi.co/api/v2/pokemon/${name}`;
 
-  let response = await fetch(apiURL);
-  let pokemonInfo: Pokemon = await response.json();
+    let response = await fetch(apiURL);
+    let pokemonInfo: Pokemon = await response.json();
 
-  const apiInfo = `https://pokeapi.co/api/v2/pokemon-species/${name}/`;
-  let info = await fetch(apiInfo);
-  // TODO:cambiar type
-  let description: PokemonWithDescription = await info.json();
+    const apiInfo = `https://pokeapi.co/api/v2/pokemon-species/${name}/`;
+    let info = await fetch(apiInfo);
+    // TODO:cambiar type
+    let description: PokemonWithDescription = await info.json();
 
-  console.log(pokemonInfo);
+    console.log(pokemonInfo);
 
-  headerInfo(pokemonInfo);
-  printPokemon(pokemonInfo, description);
+    headerInfo(pokemonInfo);
+    printPokemon(pokemonInfo, description);
 
-  hideHtmlElement(spinnerConatiner!);
+    hideHtmlElement(spinnerConatiner!);
+  } catch (error) {
+    const errorMsj = document.createElement("p");
+    errorMsj.innerHTML = " ❌ Ha ocurrido un error!";
+    container?.appendChild(errorMsj);
+    hideHtmlElement(spinner!);
+  }
 }
 
 if (!pokemonName) {

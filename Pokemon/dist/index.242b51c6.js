@@ -25,25 +25,32 @@ function getColorFromType(type) {
     return "black";
 }
 async function printResult() {
-    showHtmlElement(spinner);
-    const apiURL = "https://pokeapi.co/api/v2/pokemon?limit=150&offset=0";
-    let response = await fetch(apiURL);
-    let json = await response.json();
-    const jsonArray = json.results;
-    const unresolvedPokemons = [];
-    for(let i = 0; i < jsonArray.length; i++){
-        const pokemon = jsonArray[i];
-        const apiPersonaje = `https://pokeapi.co/api/v2/pokemon/${pokemon.name}`;
-        const unresolvedReq = fetch(apiPersonaje);
-        unresolvedPokemons.push(unresolvedReq);
-    }
-    const resolvedPokemons = await Promise.all(unresolvedPokemons);
-    hideHtmlElement(spinner);
-    for(let i = 0; i < resolvedPokemons.length; i++){
-        const currentPokemon = resolvedPokemons[i];
-        const finalPokemon = await currentPokemon.json();
-        pokeList.push(finalPokemon);
-        printCard(finalPokemon);
+    try {
+        showHtmlElement(spinner);
+        const apiURL = "https://pokeapi.co/api/v2/pokemon?limit=150&offset=0";
+        let response = await fetch(apiURL);
+        let json = await response.json();
+        const jsonArray = json.results;
+        const unresolvedPokemons = [];
+        for(let i = 0; i < jsonArray.length; i++){
+            const pokemon = jsonArray[i];
+            const apiPersonaje = `https://pokeapi.co/api/v2/pokemon/${pokemon.name}`;
+            const unresolvedReq = fetch(apiPersonaje);
+            unresolvedPokemons.push(unresolvedReq);
+        }
+        const resolvedPokemons = await Promise.all(unresolvedPokemons);
+        hideHtmlElement(spinner);
+        for(let i = 0; i < resolvedPokemons.length; i++){
+            const currentPokemon = resolvedPokemons[i];
+            const finalPokemon = await currentPokemon.json();
+            pokeList.push(finalPokemon);
+            printCard(finalPokemon);
+        }
+    } catch (error) {
+        const errorMsj = document.createElement("p");
+        errorMsj.innerHTML = " \u274C Ha ocurrido un error!";
+        container?.appendChild(errorMsj);
+        hideHtmlElement(spinner);
     }
 }
 printResult();

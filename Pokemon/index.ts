@@ -75,37 +75,44 @@ function getColorFromType(type: string) {
 }
 
 async function printResult() {
-  showHtmlElement(spinner!);
-  const apiURL = "https://pokeapi.co/api/v2/pokemon?limit=150&offset=0";
+  try {
+    showHtmlElement(spinner!);
+    const apiURL = "https://pokeapi.co/api/v2/pokemon?limit=150&offset=0";
 
-  let response = await fetch(apiURL);
-  let json: PokemonListResponse = await response.json();
+    let response = await fetch(apiURL);
+    let json: PokemonListResponse = await response.json();
 
-  const jsonArray = json.results;
+    const jsonArray = json.results;
 
-  const unresolvedPokemons: Promise<Response>[] = [];
+    const unresolvedPokemons: Promise<Response>[] = [];
 
-  for (let i = 0; i < jsonArray.length; i++) {
-    const pokemon = jsonArray[i];
+    for (let i = 0; i < jsonArray.length; i++) {
+      const pokemon = jsonArray[i];
 
-    const apiPersonaje = `https://pokeapi.co/api/v2/pokemon/${pokemon.name}`;
+      const apiPersonaje = `https://pokeapi.co/api/v2/pokemon/${pokemon.name}`;
 
-    const unresolvedReq = fetch(apiPersonaje);
-    unresolvedPokemons.push(unresolvedReq);
-  }
+      const unresolvedReq = fetch(apiPersonaje);
+      unresolvedPokemons.push(unresolvedReq);
+    }
 
-  const resolvedPokemons = await Promise.all(unresolvedPokemons);
+    const resolvedPokemons = await Promise.all(unresolvedPokemons);
 
-  hideHtmlElement(spinner!);
+    hideHtmlElement(spinner!);
 
-  for (let i = 0; i < resolvedPokemons.length; i++) {
-    const currentPokemon = resolvedPokemons[i];
+    for (let i = 0; i < resolvedPokemons.length; i++) {
+      const currentPokemon = resolvedPokemons[i];
 
-    const finalPokemon: Pokemon = await currentPokemon.json();
+      const finalPokemon: Pokemon = await currentPokemon.json();
 
-    pokeList.push(finalPokemon);
+      pokeList.push(finalPokemon);
 
-    printCard(finalPokemon);
+      printCard(finalPokemon);
+    }
+  } catch (error) {
+    const errorMsj = document.createElement("p");
+    errorMsj.innerHTML = " ❌ Ha ocurrido un error!";
+    container?.appendChild(errorMsj);
+    hideHtmlElement(spinner!);
   }
 }
 

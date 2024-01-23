@@ -305,7 +305,7 @@ label {
   display: none;
 }
 
-@media screen and (width >= 390px) {
+@media screen and (width >= 610px) {
   .header {
     height: 60px;
     padding: 24px;
