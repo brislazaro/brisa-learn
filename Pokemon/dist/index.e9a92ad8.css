@@ -87,32 +87,16 @@
 }
 
 .loader {
-  box-sizing: border-box;
-  background: linear-gradient(0deg, #ff3d0033 33%, #ff3d00 100%);
+  border: 20px solid #eaf0f6;
+  border-top-color: #ff7a59;
   border-radius: 50%;
-  justify-content: center;
-  align-items: center;
-  width: 48px;
-  height: 48px;
-  animation: 1s linear infinite rotation;
-  display: inline-block;
-  position: relative;
+  width: 200px;
+  height: 200px;
+  margin: 200px auto auto;
+  animation: 4s linear infinite spinner;
 }
 
-.loader:after {
-  content: "";
-  box-sizing: border-box;
-  background: #263238;
-  border-radius: 50%;
-  width: 44px;
-  height: 44px;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-
-@keyframes rotation {
+@keyframes spinner {
   0% {
     transform: rotate(0);
   }

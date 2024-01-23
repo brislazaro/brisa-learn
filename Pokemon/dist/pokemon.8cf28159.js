@@ -2,7 +2,7 @@ const body = document.querySelector(".body");
 const pokemonID = document.querySelector(".header-info");
 const pokemonContainer = document.querySelector(".container");
 const above = document.querySelector(".above-section");
-const spinnerConatiner = document.querySelector("loader");
+const spinnerConatiner = document.querySelector(".loader");
 const searchParams = new URLSearchParams(window.location.search);
 const pokemonName = searchParams.get("name");
 function getColorFromTypePokemon(type) {
