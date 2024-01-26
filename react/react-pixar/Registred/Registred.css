@@ -1,0 +1,14 @@
+.registred-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 70px;
+}
+
+.registred {
+  font-size: 14px;
+  letter-spacing: 0.29em;
+  line-height: 1.7em;
+  font-style: normal;
+  font-weight: 400;
+}

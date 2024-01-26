@@ -1,0 +1,73 @@
+.fotter {
+  margin-top: 250px;
+}
+
+.redes-sociales {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
+.rs-logo {
+  width: 30px;
+}
+
+.politics-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 40px;
+  font-weight: 300;
+}
+
+.politics {
+  text-decoration: none;
+  color: black;
+  font-size: 14px;
+  letter-spacing: 0.29em;
+  line-height: 1.7em;
+  font-weight: 300;
+  text-decoration: underline;
+}
+
+.partes {
+  display: flex;
+  gap: 12px;
+}
+.years {
+  font-weight: 300;
+  font-style: normal;
+  font-size: 14px;
+  letter-spacing: 0.29em;
+  line-height: 1.7em;
+  margin-top: 15px;
+}
+
+.final-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 50px;
+  font-size: 0.8em;
+  margin-bottom: 60px;
+}
+
+.personalInformation-button {
+  width: 500px;
+  height: 60px;
+  cursor: pointer;
+  border: 1px solid #68b631;
+  letter-spacing: 0.15em;
+  font-size: 15px;
+  color: #68b631;
+  line-height: 1.2;
+  cursor: pointer;
+}
+
+.personalInformation-button:hover {
+  background-color: #68b631;
+  color: white;
+}
