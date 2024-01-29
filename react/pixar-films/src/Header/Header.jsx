@@ -1,12 +1,9 @@
-import "./Header.css"
+import "./Header.css";
 import logo from "../img/logopix.jpeg";
 
-
-
-
-function Header(){
-    return(
-        <header className="header">
+function Header() {
+  return (
+    <header className="header">
       <div className="logoContainer">
         <img className="logo" src={logo}></img>
       </div>
@@ -19,6 +16,6 @@ function Header(){
         <p>ABOUT</p>
       </div>
     </header>
-    )
+  );
 }
-export default Header
+export default Header;
