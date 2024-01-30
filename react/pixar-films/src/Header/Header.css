@@ -9,7 +9,7 @@
 .logoContainer {
   display: flex;
   align-items: center;
-  padding-left: 112px;
+  padding-left: 20px;
 }
 
 .logo {
@@ -21,9 +21,9 @@
   display: none;
   flex-direction: row;
   align-items: center;
-  padding-right: 136px;
+  padding-right: 104px;
   padding-left: 40px;
-  gap: 25px;
+  gap: 18px;
   font-size: 17px;
   font-weight: 500;
   letter-spacing: 2px;
@@ -61,6 +61,10 @@
     flex-direction: row;
     justify-content: space-between;
   }
+  
+  .logoContainer{
+    padding-left: 104px;
+  }
 
   .subTitle {
     display: flex;
@@ -69,4 +73,6 @@
   .burgerMenu {
     display: none;
   }
+
+  
 }
