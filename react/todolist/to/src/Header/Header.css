@@ -1,0 +1,27 @@
+.header{
+    background-color: rgb(152, 246, 168);
+    height: 70px;
+}
+
+.logo-container{
+    display: flex;
+    align-items: center;
+    padding-left: 12px;
+    font-size: 32px;
+   justify-content: space-around;
+    
+    
+    
+}
+
+.logo{
+    width: 50px;
+    margin-top: 6px;
+}
+
+@media screen and (min-width: 650px) {
+    .logo-container{
+        justify-content: center;
+        gap: 40px;
+    }
+}
