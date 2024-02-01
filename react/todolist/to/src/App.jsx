@@ -1,12 +1,23 @@
 import "./App.css";
 
 import Layout from "./containers/Layout";
-import Lista from "./Listado/Listado";
+import Listado from "./Listado/Listado";
+import Addbutton from "./Addbutton/Addbutton";
+import { useState } from "react";
+
+const todosMock = [{ tarea: "Hacer de comer" }, { tarea: "Bañar al perro" }];
 
 function App() {
+  const [todos, setTodos] = useState(todosMock);
+
+  function handleAddTodo(newTodo) {
+    setTodos([...todos, newTodo]);
+  }
+
   return (
     <Layout>
-      <Lista />
+      <Listado todoList={todos} />
+      <Addbutton onAddTodo={handleAddTodo} />
     </Layout>
   );
 }
