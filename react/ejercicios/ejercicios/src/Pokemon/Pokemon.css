@@ -1,0 +1,15 @@
+.pokemon-container {
+  background-color: rgb(243, 243, 111);
+  display: flex;
+  flex-direction: row;
+  padding: 24px;
+}
+
+.pokemon-card {
+  background-color: lightgoldenrodyellow;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 24px;
+}

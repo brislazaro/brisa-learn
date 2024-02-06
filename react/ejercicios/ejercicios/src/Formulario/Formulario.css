@@ -1,0 +1,11 @@
+.formulario {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  background-color: lightgrey;
+}
+
+.form-card {
+  padding: 20px;
+  background-color: rgb(243, 243, 243);
+}
