@@ -7,33 +7,74 @@ function Formulario2() {
     ciudad: "",
   });
 
+  const [TrueOrFalse, setTrueOrFalse] = useState({
+    name: false,
+    edad: false,
+    ciudad: false,
+  });
+
+  const handleChangeName = (e) => {
+    if (e.target.value.length <= 3) {
+      setTrueOrFalse({ ...TrueOrFalse, name: true });
+    } else {
+      setTrueOrFalse({ ...TrueOrFalse, name: false });
+    }
+
+    setState({ ...state, name: e.target.value });
+  };
+
+  const handleChangeAge = (e) => {
+    const inputValue = e.target.value;
+    if (!isNaN(inputValue) && e.target.value.length < 3) {
+      setTrueOrFalse({ ...TrueOrFalse, edad: false });
+    } else {
+      setTrueOrFalse({ ...TrueOrFalse, edad: true });
+    }
+
+    setState({ ...state, edad: e.target.value });
+  };
+
+  const handleChangeCity = (e) => {
+    if (e.target.value === "") {
+      setTrueOrFalse({ ...TrueOrFalse, ciudad: true });
+    } else {
+      setTrueOrFalse({ ...TrueOrFalse, ciudad: false });
+    }
+
+    setState({ ...state, ciudad: e.target.value });
+  };
+
   const [isCardVisible, setIsCardVisible] = useState(false);
+
+  const showCard = (e) => {
+    e.preventDefault();
+    if (state.name === "") {
+      setIsCardVisible(false);
+    } else {
+      setIsCardVisible(true);
+    }
+  };
 
   return (
     <div className="formulario">
       <form>
         <div className="flex-row">
           <label>Nombre:</label>
-          <input
-            value={state.name}
-            onChange={(e) => setState({ ...state, name: e.target.value })}
-          ></input>
+          <input value={state.name} onChange={handleChangeName}></input>
+          {TrueOrFalse.name && <p>Nombre no valido</p>}
         </div>
 
         <div className="flex-row">
           <label>Edad:</label>
-          <input
-            value={state.edad}
-            onChange={(e) => setState({ ...state, edad: e.target.value })}
-          ></input>
+          <input value={state.edad} onChange={handleChangeAge}></input>
+          {TrueOrFalse.edad && <p>Edad no valida</p>}
         </div>
 
         <div className="flex-row">
           <label>Ciudad:</label>
-          <input
-            value={state.ciudad}
-            onChange={(e) => setState({ ...state, ciudad: e.target.value })}
-          ></input>
+          <input value={state.ciudad} onChange={handleChangeCity}></input>
+
+          {TrueOrFalse.ciudad && <p>Agrega una ciudad</p>}
         </div>
 
         <div className="flex-row">
@@ -44,14 +85,8 @@ function Formulario2() {
           >
             Eliminar
           </button>
-          <button
-            onClick={(e) => {
-              e.preventDefault();
-              setIsCardVisible(true);
-            }}
-          >
-            Guardar
-          </button>
+          <button onClick={showCard}>Guardar</button>
+          {!isCardVisible && <p>llenar todos los campos</p>}
         </div>
       </form>
 
