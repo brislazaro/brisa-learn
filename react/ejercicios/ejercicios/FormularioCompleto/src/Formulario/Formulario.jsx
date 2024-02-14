@@ -52,6 +52,7 @@ function Formulario() {
     }
 
     setState({ ...state, name: value });
+    setEmptyError(false);
   };
 
   const onChangeAge = (e) => {
@@ -64,6 +65,7 @@ function Formulario() {
     }
 
     setState({ ...state, age: e.target.value });
+    setEmptyError(false);
   };
 
   const onChangeAddres = (e) => {
@@ -76,6 +78,7 @@ function Formulario() {
     }
 
     setState({ ...state, addres: e.target.value });
+    setEmptyError(false);
   };
 
   const onChangeEmail = (e) => {
@@ -89,6 +92,7 @@ function Formulario() {
     }
 
     setState({ ...state, email: e.target.value });
+    setEmptyError(false);
   };
 
   const onPhoneChange = (e) => {
@@ -101,6 +105,7 @@ function Formulario() {
     }
 
     setState({ ...state, phone: e.target.value });
+    setEmptyError(false);
   };
 
   const resetForm = () => {
