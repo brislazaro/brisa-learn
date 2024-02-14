@@ -20,12 +20,9 @@ const style = {
 
 function Formulario() {
   // TODO: Quitar los errores cuando le damos a reset
-  // TODO: No mostrar modal si hay algun error
+
+  // TODO: Envolver todos los campos en su div para colocar el mensaje de error donde toca
   const [open, setOpen] = useState(false);
-  const handleOpen = () => {
-    setOpen(true);
-  };
-  const handleClose = () => setOpen(false);
 
   const [state, setState] = useState({
     name: "",
@@ -42,6 +39,8 @@ function Formulario() {
     email: false,
     phone: false,
   });
+
+  const [emptyError, setEmptyError] = useState(false);
 
   const onChangeName = (e) => {
     const value = e.target.value;
@@ -114,6 +113,21 @@ function Formulario() {
     });
   };
 
+  const handleOpen = () => {
+    if (
+      state.name === "" ||
+      state.age === "" ||
+      state.addres === "" ||
+      state.email === "" ||
+      state.phone === ""
+    ) {
+      setEmptyError(true);
+    } else {
+      setOpen(true);
+    }
+  };
+  const handleClose = () => setOpen(false);
+
   return (
     <>
       <div className="container">
@@ -121,46 +135,59 @@ function Formulario() {
           <img className="logo" src={User}></img>
         </div>
 
-        <label>Nombre:</label>
-        <input
-          name="name"
-          className="input"
-          onChange={onChangeName}
-          value={state.name}
-        ></input>
-        {errorState.name && <p className="error">Campo no valido</p>}
+        <div className="field">
+          <label>Nombre:</label>
+          <input
+            name="name"
+            className="input"
+            onChange={onChangeName}
+            value={state.name}
+          ></input>
+          {errorState.name && <p className="error">Campo no valido</p>}
+        </div>
 
-        <label>Edad</label>
-        <input
-          className="input"
-          onChange={onChangeAge}
-          value={state.age}
-        ></input>
-        {errorState.age && <p className="error">Campo no valido</p>}
+        <div className="field">
+          <label>Edad:</label>
+          <input
+            className="input"
+            onChange={onChangeAge}
+            value={state.age}
+          ></input>
 
-        <label>Direccion</label>
-        <input
-          className="input"
-          onChange={onChangeAddres}
-          value={state.addres}
-        ></input>
-        {errorState.addres && <p className="error">Campo no valido</p>}
+          {errorState.age && <p className="error">Campo no valido</p>}
+        </div>
 
-        <label>Email</label>
-        <input
-          className="input"
-          onChange={onChangeEmail}
-          value={state.email}
-        ></input>
-        {errorState.email && <p className="error">Campo no valido</p>}
+        <div className="field">
+          <label>Direccion:</label>
+          <input
+            className="input"
+            onChange={onChangeAddres}
+            value={state.addres}
+          ></input>
+          {errorState.addres && <p className="error">Campo no valido</p>}
+        </div>
 
-        <label>Telefono</label>
-        <input
-          className="input"
-          onChange={onPhoneChange}
-          value={state.phone}
-        ></input>
-        {errorState.phone && <p className="error">Campo no valido</p>}
+        <div className="field">
+          <label>Email:</label>
+          <input
+            className="input"
+            onChange={onChangeEmail}
+            value={state.email}
+          ></input>
+          {errorState.email && <p className="error">Campo no valido</p>}
+        </div>
+
+        <div className="field">
+          <label>Telefono:</label>
+          <input
+            className="input"
+            onChange={onPhoneChange}
+            value={state.phone}
+          ></input>
+          {errorState.phone && <p className="error">Campo no valido</p>}
+        </div>
+
+        {emptyError && <p className="error">Llena todos los campos</p>}
 
         <div className="buttons">
           <button className="button" onClick={resetForm}>
