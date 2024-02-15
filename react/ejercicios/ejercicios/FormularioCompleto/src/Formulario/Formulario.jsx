@@ -1,46 +1,42 @@
 import { useState } from "react";
 import "./Formulario.css";
 import User from "./user.png";
-// import * as React from "react";
-import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
+import Input from "../Inputs/Input";
 
-const style = {
-  position: "absolute",
-  top: "50%",
-  left: "50%",
-  transform: "translate(-50%, -50%)",
-  width: 400,
-  bgcolor: "background.paper",
-  border: "2px solid #000",
-  boxShadow: 24,
-  p: 4,
+const initialState = {
+  name: "",
+  age: "",
+  addres: "",
+  email: "",
+  phone: "",
 };
 
-function Formulario() {
-  // TODO: Quitar los errores cuando le damos a reset
+const errorInitialState = {
+  name: false,
+  age: false,
+  addres: false,
+  email: false,
+  phone: false,
+};
 
-  // TODO: Envolver todos los campos en su div para colocar el mensaje de error donde toca
+// TODO: 1- hacer commit
+// TODO: Pasar css de los inputs a su css
+// TODO:convertir el div a form y Preventdefault de los botones del form
+
+function Formulario() {
   const [open, setOpen] = useState(false);
 
-  const [state, setState] = useState({
-    name: "",
-    age: "",
-    addres: "",
-    email: "",
-    phone: "",
-  });
+  const [state, setState] = useState(initialState);
 
-  const [errorState, setErrorState] = useState({
-    name: false,
-    age: false,
-    addres: false,
-    email: false,
-    phone: false,
-  });
+  const [errorState, setErrorState] = useState(errorInitialState);
 
   const [emptyError, setEmptyError] = useState(false);
+
+  const [fullError, setFullError] = useState(false);
+
+  console.log("rerendering");
 
   const onChangeName = (e) => {
     const value = e.target.value;
@@ -53,6 +49,7 @@ function Formulario() {
 
     setState({ ...state, name: value });
     setEmptyError(false);
+    setFullError(false);
   };
 
   const onChangeAge = (e) => {
@@ -66,6 +63,7 @@ function Formulario() {
 
     setState({ ...state, age: e.target.value });
     setEmptyError(false);
+    setFullError(false);
   };
 
   const onChangeAddres = (e) => {
@@ -79,6 +77,7 @@ function Formulario() {
 
     setState({ ...state, addres: e.target.value });
     setEmptyError(false);
+    setFullError(false);
   };
 
   const onChangeEmail = (e) => {
@@ -93,6 +92,7 @@ function Formulario() {
 
     setState({ ...state, email: e.target.value });
     setEmptyError(false);
+    setFullError(false);
   };
 
   const onPhoneChange = (e) => {
@@ -106,16 +106,14 @@ function Formulario() {
 
     setState({ ...state, phone: e.target.value });
     setEmptyError(false);
+    setFullError(false);
   };
 
   const resetForm = () => {
-    setState({
-      name: "",
-      age: "",
-      addres: "",
-      email: "",
-      phone: "",
-    });
+    setState(initialState);
+    setErrorState(errorInitialState);
+    setEmptyError(false);
+    setFullError(false);
   };
 
   const handleOpen = () => {
@@ -127,9 +125,21 @@ function Formulario() {
       state.phone === ""
     ) {
       setEmptyError(true);
-    } else {
-      setOpen(true);
+      return;
     }
+
+    if (
+      errorState.name === true ||
+      errorState.age === true ||
+      errorState.addres === true ||
+      errorState.email === true ||
+      errorState.phone === true
+    ) {
+      setFullError(true);
+      return;
+    }
+
+    setOpen(true);
   };
   const handleClose = () => setOpen(false);
 
@@ -140,59 +150,49 @@ function Formulario() {
           <img className="logo" src={User}></img>
         </div>
 
-        <div className="field">
-          <label>Nombre:</label>
-          <input
-            name="name"
-            className="input"
-            onChange={onChangeName}
-            value={state.name}
-          ></input>
-          {errorState.name && <p className="error">Campo no valido</p>}
-        </div>
+        <Input
+          label={"Name:"}
+          name={"name"}
+          onChange={onChangeName}
+          value={state.name}
+          errorState={errorState.name}
+        />
 
-        <div className="field">
-          <label>Edad:</label>
-          <input
-            className="input"
-            onChange={onChangeAge}
-            value={state.age}
-          ></input>
+        <Input
+          label={"Age:"}
+          name={"age"}
+          onChange={onChangeAge}
+          value={state.age}
+          errorState={errorState.age}
+        />
 
-          {errorState.age && <p className="error">Campo no valido</p>}
-        </div>
+        <Input
+          label={"Addres:"}
+          name={"addres"}
+          onChange={onChangeAddres}
+          value={state.addres}
+          errorState={errorState.addres}
+        />
 
-        <div className="field">
-          <label>Direccion:</label>
-          <input
-            className="input"
-            onChange={onChangeAddres}
-            value={state.addres}
-          ></input>
-          {errorState.addres && <p className="error">Campo no valido</p>}
-        </div>
+        <Input
+          label={"Email:"}
+          name={"email"}
+          onChange={onChangeEmail}
+          value={state.email}
+          errorState={errorState.email}
+        />
 
-        <div className="field">
-          <label>Email:</label>
-          <input
-            className="input"
-            onChange={onChangeEmail}
-            value={state.email}
-          ></input>
-          {errorState.email && <p className="error">Campo no valido</p>}
-        </div>
-
-        <div className="field">
-          <label>Telefono:</label>
-          <input
-            className="input"
-            onChange={onPhoneChange}
-            value={state.phone}
-          ></input>
-          {errorState.phone && <p className="error">Campo no valido</p>}
-        </div>
+        <Input
+          label={"Phone:"}
+          name={"phone"}
+          onChange={onPhoneChange}
+          value={state.phone}
+          errorState={errorState.phone}
+        />
 
         {emptyError && <p className="error">Llena todos los campos</p>}
+
+        {fullError && <p className="error">Campos no validos</p>}
 
         <div className="buttons">
           <button className="button" onClick={resetForm}>
@@ -210,7 +210,7 @@ function Formulario() {
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
-        <Box sx={style}>
+        <div className="modal-content">
           <Typography id="modal-modal-title" variant="h6" component="h2">
             Datos
           </Typography>
@@ -221,7 +221,7 @@ function Formulario() {
             <p>Email: {state.email}</p>
             <p>Telefono: {state.phone}</p>
           </div>
-        </Box>
+        </div>
       </Modal>
     </>
   );
