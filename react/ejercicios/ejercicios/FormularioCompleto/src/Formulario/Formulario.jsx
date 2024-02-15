@@ -21,8 +21,6 @@ const errorInitialState = {
   phone: false,
 };
 
-// TODO: 1- hacer commit
-// TODO: Pasar css de los inputs a su css
 // TODO:convertir el div a form y Preventdefault de los botones del form
 
 function Formulario() {
