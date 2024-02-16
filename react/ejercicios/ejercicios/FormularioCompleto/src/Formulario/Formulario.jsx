@@ -34,8 +34,6 @@ function Formulario() {
 
   const [fullError, setFullError] = useState(false);
 
-  console.log("rerendering");
-
   const onChangeName = (e) => {
     const value = e.target.value;
 
@@ -107,14 +105,16 @@ function Formulario() {
     setFullError(false);
   };
 
-  const resetForm = () => {
+  const resetForm = (e) => {
+    e.preventDefault();
     setState(initialState);
     setErrorState(errorInitialState);
     setEmptyError(false);
     setFullError(false);
   };
 
-  const handleOpen = () => {
+  const handleOpen = (e) => {
+    e.preventDefault();
     if (
       state.name === "" ||
       state.age === "" ||
@@ -143,7 +143,7 @@ function Formulario() {
 
   return (
     <>
-      <div className="container">
+      <form className="container">
         <div className="logoContainer">
           <img className="logo" src={User}></img>
         </div>
@@ -200,7 +200,7 @@ function Formulario() {
             Guardar
           </button>
         </div>
-      </div>
+      </form>
 
       <Modal
         open={open}

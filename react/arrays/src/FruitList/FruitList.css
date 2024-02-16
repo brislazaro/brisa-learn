@@ -1,0 +1,17 @@
+.fruit-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: solid 2px black;
+  margin: 12px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  border-radius: 12px;
+  padding: 16px 50px;
+  background-color: rgb(239, 235, 235);
+}
+
+.fruit-list {
+  list-style: none;
+}
