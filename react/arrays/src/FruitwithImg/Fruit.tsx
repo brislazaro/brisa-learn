@@ -1,8 +1,10 @@
 import "./Fruit.css";
+
 import banana from "./banana.webp";
 import apple from "./apple.jpeg";
 import orange from "./orange.avif";
 import pineapple from "./piña.jpeg";
+import { useState } from "react";
 
 interface Fruit {
   img: string;
@@ -13,7 +15,7 @@ interface Fruit {
 }
 
 function Fruit() {
-  const fruitList2: Fruit[] = [
+  const [fruitList2, setFruitList2] = useState<Fruit[]>([
     {
       img: banana,
       fruta: "Banana",
@@ -36,7 +38,14 @@ function Fruit() {
       color: "Yellow",
       hasSeeds: false,
     },
-  ];
+  ]);
+
+  const deleteFruit = (fruta: string) => {
+    const updatedFruitList = fruitList2.filter(
+      (fruit) => fruit.fruta !== fruta
+    );
+    setFruitList2(updatedFruitList);
+  };
 
   return (
     <div>
@@ -55,6 +64,12 @@ function Fruit() {
             <div>{`Cantidad: ${fruit.cantidad}`}</div>
             <div>{`Color: ${fruit.color}`}</div>
             <div>{`Tiene semillas: ${fruit.hasSeeds ? "Sí" : "No"}`}</div>
+            <button
+              className={`button ${fruit.color}`}
+              onClick={() => deleteFruit(fruit.fruta)}
+            >
+              Eliminar
+            </button>
           </li>
         ))}
       </ul>
