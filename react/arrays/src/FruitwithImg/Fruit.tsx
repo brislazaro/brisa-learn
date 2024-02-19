@@ -5,8 +5,9 @@ import apple from "./apple.jpeg";
 import orange from "./orange.avif";
 import pineapple from "./piña.jpeg";
 import { useState } from "react";
+import CreateButton from "../CreateButton/CreateButton";
 
-interface Fruit {
+export interface Fruit {
   img: string;
   fruta: string;
   cantidad: number;
@@ -49,6 +50,7 @@ function Fruit() {
 
   return (
     <div>
+      <CreateButton fruitList={fruitList2} setFruitList={setFruitList2} />
       <ul className="fruit-list">
         {fruitList2.map((fruit, index) => (
           <li
