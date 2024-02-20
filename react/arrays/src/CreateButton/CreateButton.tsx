@@ -12,6 +12,7 @@ import {
   InputLabel,
   MenuItem,
   Select,
+  SelectChangeEvent,
   TextField,
 } from "@mui/material";
 import { Fruit } from "../FruitwithImg/Fruit";
@@ -59,6 +60,7 @@ const CreateButton: FC<CreateButtonProps> = ({ fruitList, setFruitList }) => {
 
   const onChangeName = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
+
     if (value.length >= 4) {
       setFormState({ ...formState, fruta: value });
       setNameError(false);
@@ -68,18 +70,18 @@ const CreateButton: FC<CreateButtonProps> = ({ fruitList, setFruitList }) => {
   };
 
   const onChangeCantidad = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value;
-    if (!isNaN(value)) {
+    const value = Number(e.target.value);
+    if (!isNaN(value) && value >= 0 && value < 11) {
       setFormState({ ...formState, cantidad: value });
     }
   };
 
-  const onChangeColor = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const onChangeColor = (e: SelectChangeEvent<string>) => {
     const value = e.target.value;
     setFormState({ ...formState, color: value });
   };
 
-  const onChangeSeeds = (e) => {
+  const onChangeSeeds = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.checked;
     setFormState({ ...formState, hasSeeds: value });
   };
@@ -132,18 +134,22 @@ const CreateButton: FC<CreateButtonProps> = ({ fruitList, setFruitList }) => {
               name="cantidad"
               size="small"
               label="Cantidad"
+              type="number"
               variant="outlined"
               value={formState.cantidad}
               onChange={onChangeCantidad}
             />
 
             <FormControl fullWidth>
-              <InputLabel id="demo-simple-select-label">Color</InputLabel>
+              <InputLabel id="demo-simple-select-label" size="small">
+                Color
+              </InputLabel>
               <Select
                 labelId="demo-simple-select-label"
                 id="demo-simple-select"
                 value={formState.color}
                 label="Color"
+                size="small"
                 onChange={onChangeColor}
               >
                 <MenuItem value={"Green"}>Green</MenuItem>
@@ -155,9 +161,8 @@ const CreateButton: FC<CreateButtonProps> = ({ fruitList, setFruitList }) => {
 
             <FormControlLabel
               name="seeds"
-              control={<Checkbox size="medium" />}
+              control={<Checkbox size="medium" onChange={onChangeSeeds} />}
               label="Tiene Semillas"
-              onChange={onChangeSeeds}
             />
           </form>
         </DialogContent>
@@ -175,9 +180,18 @@ const CreateButton: FC<CreateButtonProps> = ({ fruitList, setFruitList }) => {
           <Button
             variant="contained"
             onClick={() => {
-              setFruitList([...fruitList, formState]);
-              handleClose();
-              cleanForm();
+              if (
+                formState.fruta === "" ||
+                nameError === true ||
+                formState.cantidad === 0 ||
+                formState.color === ""
+              ) {
+                alert("Rellana todos los campos");
+              } else {
+                setFruitList([...fruitList, formState]);
+                handleClose();
+                cleanForm();
+              }
             }}
             autoFocus
           >
