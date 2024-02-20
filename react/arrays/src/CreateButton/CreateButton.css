@@ -4,16 +4,10 @@
   justify-content: center;
 }
 
-.form {
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  gap: 20px;
-}
-
 .form-container {
   width: 100%;
   display: flex;
   flex-direction: column;
   gap: 12px;
+  padding-top: 4px;
 }

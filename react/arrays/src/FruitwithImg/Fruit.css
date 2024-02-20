@@ -28,6 +28,10 @@
   border-color: rgb(242, 172, 44);
 }
 
+.Green {
+  border-color: rgb(141, 233, 141);
+}
+
 .button {
   padding: 10px 20px;
   background-color: transparent;

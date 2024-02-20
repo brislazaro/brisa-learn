@@ -3,10 +3,17 @@ import Button from "@mui/material/Button";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
-import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import "./CreateButton.css";
-import { Checkbox, FormControlLabel, TextField } from "@mui/material";
+import {
+  Checkbox,
+  FormControl,
+  FormControlLabel,
+  InputLabel,
+  MenuItem,
+  Select,
+  TextField,
+} from "@mui/material";
 import { Fruit } from "../FruitwithImg/Fruit";
 
 type CreateButtonProps = {
@@ -25,6 +32,18 @@ const CreateButton: FC<CreateButtonProps> = ({ fruitList, setFruitList }) => {
     hasSeeds: false,
   });
 
+  const [nameError, setNameError] = useState(false);
+
+  const cleanForm = () => {
+    setFormState({
+      img: "",
+      fruta: "",
+      cantidad: 0,
+      color: "",
+      hasSeeds: false,
+    });
+  };
+
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -33,9 +52,36 @@ const CreateButton: FC<CreateButtonProps> = ({ fruitList, setFruitList }) => {
     setOpen(false);
   };
 
+  const onChangeImg = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    setFormState({ ...formState, img: value });
+  };
+
   const onChangeName = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
-    setFormState({ ...formState, fruta: value });
+    if (value.length >= 4) {
+      setFormState({ ...formState, fruta: value });
+      setNameError(false);
+    } else {
+      setNameError(true);
+    }
+  };
+
+  const onChangeCantidad = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    if (!isNaN(value)) {
+      setFormState({ ...formState, cantidad: value });
+    }
+  };
+
+  const onChangeColor = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    setFormState({ ...formState, color: value });
+  };
+
+  const onChangeSeeds = (e) => {
+    const value = e.target.checked;
+    setFormState({ ...formState, hasSeeds: value });
   };
 
   return (
@@ -48,60 +94,90 @@ const CreateButton: FC<CreateButtonProps> = ({ fruitList, setFruitList }) => {
 
       <Dialog
         open={open}
-        onClose={handleClose}
+        onClose={() => {
+          handleClose();
+          cleanForm();
+          setNameError(false);
+        }}
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
       >
         <DialogTitle id="alert-dialog-title">{"Añade una fruta"}</DialogTitle>
 
         <DialogContent>
-          <DialogContentText id="alert-dialog-description">
-            <div className="form-container">
-              <div className="form">
-                <label>Imagen:</label>
-                <input onChange={() => {}} value={formState.img}></input>
-              </div>
-              <div className="form">
-                <TextField
-                  fullWidth
-                  name="fruta"
-                  size="small"
-                  label="Nombre"
-                  variant="outlined"
-                  onChange={onChangeName}
-                />
-              </div>
-              <div className="form">
-                <TextField
-                  fullWidth
-                  size="small"
-                  label="Cantidad"
-                  variant="outlined"
-                />
-              </div>
-              <div className="form">
-                <TextField
-                  fullWidth
-                  size="small"
-                  label="Color"
-                  variant="outlined"
-                />
-              </div>
-              <div className="form">
-                <FormControlLabel
-                  control={<Checkbox size="medium" />}
-                  label="Tiene Semillas"
-                />
-              </div>
-            </div>
-          </DialogContentText>
+          <form className="form-container">
+            <TextField
+              fullWidth
+              name="img"
+              value={formState.img}
+              size="small"
+              label="Imagen"
+              variant="outlined"
+              onChange={onChangeImg}
+            />
+
+            <TextField
+              fullWidth
+              name="fruta"
+              size="small"
+              label="Nombre"
+              variant="outlined"
+              onChange={onChangeName}
+              error={nameError}
+              helperText={nameError ? "Nombre no Valido." : ""}
+            />
+
+            <TextField
+              fullWidth
+              name="cantidad"
+              size="small"
+              label="Cantidad"
+              variant="outlined"
+              value={formState.cantidad}
+              onChange={onChangeCantidad}
+            />
+
+            <FormControl fullWidth>
+              <InputLabel id="demo-simple-select-label">Color</InputLabel>
+              <Select
+                labelId="demo-simple-select-label"
+                id="demo-simple-select"
+                value={formState.color}
+                label="Color"
+                onChange={onChangeColor}
+              >
+                <MenuItem value={"Green"}>Green</MenuItem>
+                <MenuItem value={"Red"}>Red</MenuItem>
+                <MenuItem value={"Yellow"}>Yellow</MenuItem>
+                <MenuItem value={"Orange"}>Orange</MenuItem>
+              </Select>
+            </FormControl>
+
+            <FormControlLabel
+              name="seeds"
+              control={<Checkbox size="medium" />}
+              label="Tiene Semillas"
+              onChange={onChangeSeeds}
+            />
+          </form>
         </DialogContent>
 
         <DialogActions>
-          <Button onClick={handleClose}>Cerrar</Button>
           <Button
             onClick={() => {
+              handleClose();
+              cleanForm();
+              setNameError(false);
+            }}
+          >
+            Cerrar
+          </Button>
+          <Button
+            variant="contained"
+            onClick={() => {
               setFruitList([...fruitList, formState]);
+              handleClose();
+              cleanForm();
             }}
             autoFocus
           >

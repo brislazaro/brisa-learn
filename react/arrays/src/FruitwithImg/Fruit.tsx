@@ -49,7 +49,7 @@ function Fruit() {
   };
 
   return (
-    <div>
+    <div style={{ padding: "24px" }}>
       <CreateButton fruitList={fruitList2} setFruitList={setFruitList2} />
       <ul className="fruit-list">
         {fruitList2.map((fruit, index) => (
