@@ -6,6 +6,7 @@ import orange from "./orange.avif";
 import pineapple from "./piña.jpeg";
 import { useState } from "react";
 import CreateButton from "../CreateButton/CreateButton";
+import FruitList from "../FruitCard/FruitList";
 
 export interface Fruit {
   img: string;
@@ -51,30 +52,7 @@ function Fruit() {
   return (
     <div style={{ padding: "24px" }}>
       <CreateButton fruitList={fruitList2} setFruitList={setFruitList2} />
-      <ul className="fruit-list">
-        {fruitList2.map((fruit, index) => (
-          <li
-            key={`${fruit.fruta}-${index}`}
-            className={`fruit-card ${fruit.color}`}
-          >
-            <div>
-              <img className="img" src={fruit.img} alt={fruit.fruta} />
-            </div>
-            <div>
-              <h3>{fruit.fruta}</h3>
-            </div>
-            <div>{`Cantidad: ${fruit.cantidad}`}</div>
-            <div>{`Color: ${fruit.color}`}</div>
-            <div>{`Tiene semillas: ${fruit.hasSeeds ? "Sí" : "No"}`}</div>
-            <button
-              className={`button ${fruit.color}`}
-              onClick={() => deleteFruit(fruit.fruta)}
-            >
-              Eliminar
-            </button>
-          </li>
-        ))}
-      </ul>
+      <FruitList fruitList={fruitList2} deleteFruit={deleteFruit} />
     </div>
   );
 }
