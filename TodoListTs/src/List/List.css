@@ -1,0 +1,26 @@
+.list-container {
+  background-color: #ffffff;
+  width: 50%;
+  padding: 0px 70px;
+  margin-top: 24px;
+  display: flex;
+  flex-direction: column;
+}
+
+.button {
+  margin-top: 24px;
+}
+
+.task-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.dialog-content {
+  padding-top: 4px;
+}
+
+.do {
+  text-decoration: line-through;
+}
