@@ -10,6 +10,7 @@ import TextField from "@mui/material/TextField";
 import TodoCard from "../TodoCard/TodoCard";
 import { Task } from "@mui/icons-material";
 import { useState } from "react";
+import toast from "react-hot-toast";
 
 export type Task = {
   id: number;
@@ -57,6 +58,9 @@ function List() {
 
       setTasks([...tasks, newTaskObject]);
       setNewTask("");
+      toast.success("Tarea añadida!");
+    } else {
+      toast.error("Añade una tarea!");
     }
   };
 
@@ -90,7 +94,6 @@ function List() {
                 name="Task"
                 value={newTask}
                 onChange={(e) => setNewTask(e.target.value)}
-                disabled
               />
             </div>
           </DialogContent>

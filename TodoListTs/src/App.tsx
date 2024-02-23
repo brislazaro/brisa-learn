@@ -1,6 +1,7 @@
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import "./App.css";
 import List from "./List/List";
+import { Toaster } from "react-hot-toast";
 
 const theme = createTheme({
   palette: {
@@ -20,6 +21,7 @@ function App() {
 
         <List />
       </main>
+      <Toaster />
     </ThemeProvider>
   );
 }

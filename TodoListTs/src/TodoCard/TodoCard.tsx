@@ -3,6 +3,7 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import IconButton from "@mui/material/IconButton";
 import { FC, useState } from "react";
 import { Task } from "../List/List";
+import toast from "react-hot-toast";
 
 type TodoCardProps = {
   task: Task;
@@ -24,6 +25,7 @@ const TodoCard: FC<TodoCardProps> = ({ task, onDelete }) => {
       <IconButton
         onClick={() => {
           onDelete(task.task);
+          toast.success("Tarea Eliminada!");
         }}
         aria-label="delete"
         sx={{ height: "40px", width: "40px" }}
