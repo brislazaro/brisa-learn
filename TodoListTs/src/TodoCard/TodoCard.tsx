@@ -6,7 +6,7 @@ import { Task } from "../List/List";
 
 type TodoCardProps = {
   task: Task;
-  onDelete: () => void;
+  onDelete: (taskName: string) => void;
 };
 
 const TodoCard: FC<TodoCardProps> = ({ task, onDelete }) => {
@@ -22,7 +22,9 @@ const TodoCard: FC<TodoCardProps> = ({ task, onDelete }) => {
 
       <p className={`${hecho && "do"}`}>{task.task}</p>
       <IconButton
-        onClick={onDelete}
+        onClick={() => {
+          onDelete(task.task);
+        }}
         aria-label="delete"
         sx={{ height: "40px", width: "40px" }}
       >

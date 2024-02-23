@@ -33,6 +33,7 @@ function List() {
   ]);
 
   const [open, setOpen] = React.useState(false);
+  const [newTask, setNewTask] = React.useState<string>("");
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -42,18 +43,28 @@ function List() {
     setOpen(false);
   };
 
-  const OnclickDelete = () => {
-    const updatedTasks = tasks.filter(
-      (task: { task: string }) => task.task !== "Hacer el super"
-    );
+  const onClickDelete = (taskName: string) => {
+    const updatedTasks = tasks.filter((task) => task.task !== taskName);
     setTasks(updatedTasks);
+  };
+
+  const onClickAdd = () => {
+    if (newTask !== "") {
+      const newTaskObject: Task = {
+        id: tasks.length + 1,
+        task: newTask,
+      };
+
+      setTasks([...tasks, newTaskObject]);
+      setNewTask("");
+    }
   };
 
   return (
     <>
       <ul className="list-container">
         {tasks.map((task: Task) => (
-          <TodoCard task={task} onDelete={OnclickDelete} />
+          <TodoCard task={task} onDelete={onClickDelete} />
         ))}
       </ul>
 
@@ -71,18 +82,27 @@ function List() {
           <DialogTitle id="alert-dialog-title">Add a new Reminder</DialogTitle>
           <DialogContent>
             <div className="dialog-content">
-              {/* Ponerle name, cambiar el ID, y value */}
               <TextField
-                id="outlined-basic"
+                id="task-id"
                 label="Task"
                 variant="outlined"
                 size="small"
+                name="Task"
+                value={newTask}
+                onChange={(e) => setNewTask(e.target.value)}
+                disabled
               />
             </div>
           </DialogContent>
           <DialogActions>
             <Button onClick={handleClose}>Close</Button>
-            <Button onClick={handleClose} autoFocus>
+            <Button
+              onClick={() => {
+                handleClose();
+                onClickAdd();
+              }}
+              autoFocus
+            >
               Add
             </Button>
           </DialogActions>

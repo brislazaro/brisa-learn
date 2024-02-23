@@ -13,12 +13,13 @@ const theme = createTheme({
 function App() {
   return (
     <ThemeProvider theme={theme}>
-      <div className="container">
-        <div className="header">
+      <main className="container">
+        <header className="header">
           <h1>Reminders</h1>
-        </div>
+        </header>
+
         <List />
-      </div>
+      </main>
     </ThemeProvider>
   );
 }
