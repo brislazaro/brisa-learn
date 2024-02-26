@@ -20,17 +20,3 @@
 .dialog-content {
   padding-top: 4px;
 }
-
-.do {
-  text-decoration: line-through;
-}
-
-.text {
-  cursor: pointer;
-}
-
-.modal-form {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}

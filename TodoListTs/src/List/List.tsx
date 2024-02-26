@@ -43,7 +43,12 @@ function List() {
     <>
       <ul className="list-container">
         {tasks.map((task: Task) => (
-          <TodoCard task={task} onDelete={onClickDelete} />
+          <TodoCard
+            task={task}
+            onDelete={onClickDelete}
+            setTasks={setTasks}
+            tasks={tasks}
+          />
         ))}
       </ul>
 

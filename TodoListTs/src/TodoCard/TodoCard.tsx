@@ -5,29 +5,25 @@ import { FC, useState } from "react";
 import { Task } from "../List/List";
 import toast from "react-hot-toast";
 import React from "react";
-import { Modal, Typography, TextField, Box } from "@mui/material";
+import { Button, DialogActions, TextField } from "@mui/material";
+import "./TodoCard.css";
+import Dialog from "@mui/material/Dialog";
+import DialogContent from "@mui/material/DialogContent";
+import DialogContentText from "@mui/material/DialogContentText";
+import DialogTitle from "@mui/material/DialogTitle";
 
 // TODO: Cambiar modal a Dialog
-// TODO: Cambiar el style de la l13 a css normal y el Box a div
-
-const style = {
-  position: "absolute",
-  top: "50%",
-  left: "50%",
-  transform: "translate(-50%, -50%)",
-  width: 400,
-  bgcolor: "background.paper",
-  border: "2px solid #000",
-  p: 4,
-};
 
 type TodoCardProps = {
   task: Task;
   onDelete: (taskName: string) => void;
+  setTasks: React.Dispatch<React.SetStateAction<Task[]>>;
+  tasks: Task[];
 };
 
-const TodoCard: FC<TodoCardProps> = ({ task, onDelete }) => {
+const TodoCard: FC<TodoCardProps> = ({ task, onDelete, setTasks, tasks }) => {
   const [hecho, setHecho] = useState(false);
+  const [newTaskText, setNewTaskText] = React.useState<string>(task.task);
 
   const onClickCheckBox = () => {
     setHecho(!hecho);
@@ -44,32 +40,59 @@ const TodoCard: FC<TodoCardProps> = ({ task, onDelete }) => {
       <p onClick={handleOpen} className={` text ${hecho && "do"}`}>
         {task.task}
       </p>
-      <Modal
+      <Dialog
         open={open}
         onClose={handleClose}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
       >
-        <Box sx={style}>
-          <Typography id="modal-modal-title" variant="h6" component="h2">
-            Task
-          </Typography>
-          <div id="modal-modal-description" className="modal-form">
-            <TextField
-              disabled
-              id="outlined-disabled"
-              label="ID"
-              defaultValue={task.id}
-            />
-            <TextField
-              disabled
-              id="outlined-disabled"
-              label="Task"
-              defaultValue={task.task}
-            />
-          </div>
-        </Box>
-      </Modal>
+        <DialogTitle id="alert-dialog-title">{"Task"}</DialogTitle>
+        <DialogContent>
+          <DialogContentText id="alert-dialog-description">
+            <div className="modal-form">
+              <TextField
+                disabled
+                id="outlined-disabled"
+                label="ID"
+                defaultValue={task.id}
+              />
+              <TextField
+                id="outlined-disabled"
+                label="Task"
+                defaultValue={task.task}
+                value={newTaskText}
+                onChange={(e) => {
+                  setNewTaskText(e.target.value);
+                }}
+              />
+            </div>
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleClose}>Cerrar</Button>
+          <Button
+            onClick={() => {
+              if (newTaskText !== task.task) {
+                const newTasks = tasks.map((currTask) => {
+                  if (currTask.id === task.id) {
+                    return { ...task, task: newTaskText };
+                  }
+
+                  return currTask;
+                });
+
+                setTasks(newTasks);
+
+                toast.success("Tarea Modificada");
+
+                handleClose();
+              }
+            }}
+          >
+            Modificar
+          </Button>
+        </DialogActions>
+      </Dialog>
       <IconButton
         onClick={() => {
           onDelete(task.task);
