@@ -34,12 +34,14 @@ type Student = {
   grade: number;
 };
 
-function getPassingStudents(students: Student[]): string[] {
+export function getPassingStudents(students: Student[]): string[] {
   // Filtramos los estudiantes que han aprobado (eliminamos los suspendidos)
   const passingStudents = students.filter((student) => student.grade >= 5);
 
   // Devolvemos un array con los nombres de los estudiantes aprobados
-  const passingStudentsNames = passingStudents.map((student) => student.name);
+  const passingStudentsNames = passingStudents
+    .map((student) => student.name)
+    .sort((a, b) => a.localeCompare(b));
 
   return passingStudentsNames;
 }

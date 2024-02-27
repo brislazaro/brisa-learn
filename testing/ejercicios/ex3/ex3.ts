@@ -11,6 +11,10 @@
     | 0    | 0    | 0         |
 */
 
-function getBiggerNum(a: number, b: number): number {
-  // ...
+export function getBiggerNum(a: number, b: number): number {
+  if (a > b) {
+    return a;
+  } else {
+    return b;
+  }
 }

@@ -4,6 +4,6 @@
     Testea esta funcion. Asegurate de hacer varios escenarios.
 */
 
-function multiplyByTwo(array: number[]): number[] {
+export function multiplyByTwo(array: number[]): number[] {
   return array.map((num) => num * 2);
 }

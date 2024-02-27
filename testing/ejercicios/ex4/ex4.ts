@@ -16,6 +16,8 @@
     
 */
 
-function addElementToArray(array: string[], element: string): string[] {
-  // ...
+export function addElementToArray(array: string[], element: string): string[] {
+  const newArray = [...array, element];
+
+  return newArray;
 }

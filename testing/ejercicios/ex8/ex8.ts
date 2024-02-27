@@ -11,3 +11,24 @@
 */
 
 // Copia y pega la funcion que hiciste en el ejericico anterior (ex7) y haz el refactor necesario.
+
+type Student = {
+  name: string;
+  grade: number;
+};
+
+export function sortStudents(passingStudentsNames: string[]) {
+  const sortedStudents = passingStudentsNames.toSorted();
+  return sortedStudents;
+}
+
+export function getPassingStudents(students: Student[]): string[] {
+  // Filtramos los estudiantes que han aprobado (eliminamos los suspendidos)
+  const passingStudents = students.filter((student) => student.grade >= 5);
+
+  // Devolvemos un array con los nombres de los estudiantes aprobados
+  const passingStudentsNames = passingStudents.map((student) => student.name);
+  const sortedStudentNames = sortStudents(passingStudentsNames);
+
+  return sortedStudentNames;
+}
