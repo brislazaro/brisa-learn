@@ -34,12 +34,26 @@ const TodoCard: FC<TodoCardProps> = ({ task, onDelete, setTasks, tasks }) => {
   const handleClose = () => setOpen(false);
 
   return (
-    <li key={task.id} className="task-item">
-      <Checkbox onClick={onClickCheckBox} checked={hecho} />
+    <>
+      <li key={task.id} className="task-item">
+        <Checkbox onClick={onClickCheckBox} checked={hecho} />
 
-      <p onClick={handleOpen} className={` text ${hecho && "do"}`}>
-        {task.task}
-      </p>
+        <p onClick={handleOpen} className={` text ${hecho && "do"}`}>
+          {task.task}
+        </p>
+
+        <IconButton
+          onClick={() => {
+            onDelete(task.task);
+            toast.success("Tarea Eliminada!");
+          }}
+          aria-label="delete"
+          sx={{ height: "40px", width: "40px" }}
+        >
+          <DeleteIcon />
+        </IconButton>
+      </li>
+
       <Dialog
         open={open}
         onClose={handleClose}
@@ -72,6 +86,11 @@ const TodoCard: FC<TodoCardProps> = ({ task, onDelete, setTasks, tasks }) => {
           <Button onClick={handleClose}>Cerrar</Button>
           <Button
             onClick={() => {
+              if (newTaskText === "") {
+                toast.error("El texto no puede estar vacio");
+                return;
+              }
+
               if (newTaskText !== task.task) {
                 const newTasks = tasks.map((currTask) => {
                   if (currTask.id === task.id) {
@@ -93,17 +112,7 @@ const TodoCard: FC<TodoCardProps> = ({ task, onDelete, setTasks, tasks }) => {
           </Button>
         </DialogActions>
       </Dialog>
-      <IconButton
-        onClick={() => {
-          onDelete(task.task);
-          toast.success("Tarea Eliminada!");
-        }}
-        aria-label="delete"
-        sx={{ height: "40px", width: "40px" }}
-      >
-        <DeleteIcon />
-      </IconButton>
-    </li>
+    </>
   );
 };
 export default TodoCard;
