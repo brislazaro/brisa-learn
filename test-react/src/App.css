@@ -1,0 +1,21 @@
+.app-container {
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 24px;
+  align-items: center;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.component-container {
+  background-color: rgb(198, 206, 218);
+  border-radius: 6px;
+  padding: 8px 24px;
+}
+
+.flex {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
