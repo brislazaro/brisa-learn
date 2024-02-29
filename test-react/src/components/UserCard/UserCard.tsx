@@ -8,7 +8,7 @@ interface UserCardProps {
 const UserCard: FC<UserCardProps> = ({ userName, age }) => {
   return (
     <div className="component-container">
-      <p>{userName}</p>
+      <p>Name: {userName}</p>
       <p>Age: {age}</p>
     </div>
   );

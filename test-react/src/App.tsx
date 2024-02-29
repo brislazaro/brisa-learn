@@ -5,6 +5,8 @@ import SayHi from "./components/SayHi/SayHi";
 import UserCard from "./components/UserCard/UserCard";
 import NumberCount from "./components/NumberCount/NumberCount";
 
+// Testea los componentes por orden de aparicion
+
 function App() {
   return (
     <div className="app-container">
