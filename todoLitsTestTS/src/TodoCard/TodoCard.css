@@ -1,0 +1,11 @@
+.card {
+  list-style: none;
+  border: solid 1px black;
+  padding: 12px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 6px;
+  margin: 12px;
+}
